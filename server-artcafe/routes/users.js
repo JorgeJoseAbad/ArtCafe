@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
 
 /* POST users listing. this is a test OK*/
 router.post('/',((req,res,next)=>{
+     console.log(req.body);
     res.send(req.body);
   })
 )
