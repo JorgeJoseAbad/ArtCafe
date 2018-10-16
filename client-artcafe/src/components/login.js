@@ -28,9 +28,11 @@ export const Login = (props) =>{
    return(
         <div className="page">
           <pre>{props.match.path}</pre>
-          <button onClick={callBackEnd}>test get</button>
-          <button onClick={callBackEndPost}>test post</button>
-          <button onClick={callBackEndPostParam}>test post</button>
+          <div>
+            <button onClick={callBackEnd}>test get</button>
+            <button onClick={callBackEndPost}>test post</button>
+            <button onClick={callBackEndPostParam}>test post with params</button>
+          </div>
           <img alt="CarlosSainz" src="https://instagram.fmad3-6.fna.fbcdn.net/vp/e2831892fe54726bc725854514d818bb/5C4D2598/t51.2885-15/sh0.08/e35/s640x640/43438078_333374877223205_9014798235918047786_n.jpg"/>
         </div>
    )
