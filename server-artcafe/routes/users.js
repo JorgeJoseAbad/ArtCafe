@@ -7,11 +7,17 @@ router.get('/', function(req, res, next) {
 });
 
 /* POST users listing. this is a test OK*/
-router.post('/',((req,res,next)=>{
+router.post('/login',((req,res,next)=>{
      console.log(req.body);
     res.send(req.body);
   })
-)
+);
+
+router.post('/signup',((req,res,next)=>{
+     console.log(req.body);
+    res.send(req.body);
+  })
+);
 
 /* POST users listing with params. this is a test OK*/
 router.post('/:id',((req,res,next)=>{

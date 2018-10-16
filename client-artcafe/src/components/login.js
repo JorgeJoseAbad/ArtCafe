@@ -34,7 +34,7 @@ export class Login extends Component{
 
   callBackEndPost=(state)=>{
 
-    axios.post('http://localhost:3000/users',state)
+    axios.post('http://localhost:3000/users/login',state)
     .then((res)=>console.log(res))
     .catch(e=>console.log(e))
   }
