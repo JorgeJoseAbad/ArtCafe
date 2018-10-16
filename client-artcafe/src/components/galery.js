@@ -6,8 +6,8 @@ export const Gallery = (props) =>{
     console.log(match);
    return(
         <div className="page">
-          <pre>{match.params.name}</pre>
-          <img alt="AltHomer" src="https://www.lifewire.com/thmb/vDB3ply4rHJG_BDWeD0AbuRu-EU=/768x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simpsons_09_Homer_V2F_hires1-56e1eccc5f9b5854a9f89a63.jpg"/>
+          <pre>{props.title}</pre>
+          <img alt="AltHomer" src="https://instagram.fmad3-6.fna.fbcdn.net/vp/e2831892fe54726bc725854514d818bb/5C4D2598/t51.2885-15/sh0.08/e35/s640x640/43438078_333374877223205_9014798235918047786_n.jpg"/>
         </div>
    )
 }

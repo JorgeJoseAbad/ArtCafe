@@ -9,7 +9,7 @@ import {Signup} from './components/signup.js';
 
 const Routes = () => {
   return [
-    <Route exact path="/" key="r1" component={Gallery} />,
+    <Route exact path="/" key="r0" component={()=><Gallery title="Hola"/>} />,
     <Route path="/gallery" key="r1" component={Gallery}/>,
     <Route path="/login" key="r2" component={Login} />,
     <Route path="/signup" key="r3" component={Signup} />
@@ -32,6 +32,10 @@ class App extends Component {
                 backgroundColor:'hsla(33, 29%, 70%, 1)',
                 margin:20
               }}>
+              <Link to="/">Portada</Link>
+              <Link to="/gallery">Gallery</Link>
+              <Link to="/signup">Signup</Link>
+              <Link to="/login">Login</Link>
               <Routes />
             </div>
           </header>
