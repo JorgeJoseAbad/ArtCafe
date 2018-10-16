@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
 
@@ -35,7 +36,7 @@ class App extends Component {
               <Link to="/">Portada</Link>
               <Link to="/gallery">Gallery</Link>
               <Link to="/signup">Signup</Link>
-              <Link to="/login">Login</Link>
+              <Link to="/login">Login</Link>  
               <Routes />
             </div>
           </header>
