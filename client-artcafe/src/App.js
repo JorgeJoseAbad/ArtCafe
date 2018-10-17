@@ -5,7 +5,7 @@ import logo from './logos/logo.svg';
 import './App.css';
 import Background from './logos/fondo.jpg';
 
-import {Gallery} from './components/galery.js';
+import {Gallery} from './components/gallery.js';
 import {Login} from './components/login.js';
 import {Signup} from './components/signup.js';
 
