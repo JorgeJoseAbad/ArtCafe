@@ -25,9 +25,10 @@ export class Signup extends Component{
       });
   }
 
-  handleSubmit = () => {
+  handleSubmit = (event) => {
       this.sendSignup(this.state)
       this.setState(this.initialState);
+      event.preventDefault();
   }
 
   sendSignup=(state)=>{
@@ -95,7 +96,6 @@ render(){
                 <input
                   type="checkbox"
                   name="isArtist"
-
                   checked={isArtist}
                   onChange={this.handleChange}
                 />

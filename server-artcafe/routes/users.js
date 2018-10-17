@@ -6,13 +6,14 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-/* POST users listing. this is a test OK*/
+/* POST users login. this is a test OK*/
 router.post('/login',((req,res,next)=>{
      console.log(req.body);
     res.send(req.body);
   })
 );
 
+/* Post users signup, this is a test OK */
 router.post('/signup',((req,res,next)=>{
      console.log(req.body);
     res.send(req.body);

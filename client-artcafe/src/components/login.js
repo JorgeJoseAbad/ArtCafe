@@ -21,9 +21,10 @@ export class Login extends Component{
       });
   }
 
-  handleSubmit = () => {
+  handleSubmit = (event) => {
       this.loginPost(this.state)
       this.setState(this.initialState);
+      event.preventDefault();
   }
 
   loginPost=(state)=>{
