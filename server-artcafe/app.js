@@ -9,7 +9,8 @@ const cors   = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
-//const bcrypt = require("bcrypt");   estan en passport.js
+const MongoStore = require("connect-mongo")(session);
+//const bcrypt = require("bcrypt");   estan en passport.js y authroutes
 const passport      = require('passport');
 require('./configs/passport');
 
@@ -37,6 +38,17 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(session({
+  secret: "artist-cafe",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  }),
+  resave: true,
+  saveUninitialized: true
+}));
 
 app.use(cors());
 app.use(logger('dev'));

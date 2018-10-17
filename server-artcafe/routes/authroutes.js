@@ -10,6 +10,15 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 
+authRoutes.get("/logout", (req, res, next) => {
+  console.log("llamada a logout");
+  req.session.destroy((err) => {
+    // cannot access session here
+    //res.redirect("/login");
+    res.send('logout hecho')
+  });
+});
+
 authRoutes.get("/signup", (req, res, next) => {
   res.send('Estoy en auth routes');
   //res.render("auth/signup");
@@ -54,5 +63,37 @@ authRoutes.post("/signup", (req, res, next) => {
     });
   });
 });
+
+authRoutes.post("/login", (req, res, next) => {
+  var username = req.body.username;
+  var password = req.body.password;
+
+  if (username === "" || password === "") {
+    res.render("auth/login", {
+      errorMessage: "Indicate a username and a password to sign up"
+    });
+    return;
+  }
+
+  User.findOne({ "username": username }, (err, user) => {
+      if (err || !user) {
+        res.render("auth/login", {
+          errorMessage: "The username doesn't exist"
+        });
+        return;
+      }
+      if (bcrypt.compareSync(password, user.password)) {
+        // Save the login in the session!
+        req.session.currentUser = user;
+        res.redirect("/");
+      } else {
+        res.render("auth/login", {
+          errorMessage: "Incorrect password"
+        });
+      }
+  });
+});
+
+
 
 module.exports = authRoutes;
