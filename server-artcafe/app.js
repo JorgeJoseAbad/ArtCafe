@@ -6,11 +6,16 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors   = require('cors');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const session = require('express-session');
+const passport      = require('passport');
+require('./configs/passport');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const galleryRouter = require('./routes/gallery');
+
 
 const app = express();
 
