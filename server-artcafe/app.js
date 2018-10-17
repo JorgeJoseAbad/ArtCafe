@@ -9,12 +9,27 @@ const cors   = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
+//const bcrypt = require("bcrypt");   estan en passport.js
 const passport      = require('passport');
 require('./configs/passport');
 
+const authRouter  = require('./routes/authroutes');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const galleryRouter = require('./routes/gallery');
+
+
+mongoose
+  .connect('mongodb://localhost/artcafe', {useNewUrlParser: true})
+  .then(x => {
+    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+  })
+  .catch(err => {
+    console.error('Error connecting to mongo', err)
+  });
+
+const app_name = require('./package.json').name;
+//const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 
 const app = express();
@@ -30,7 +45,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+app.use(passport.initialize()); //passport
+app.use(passport.session());    //passport
+
+
 app.use('/', indexRouter);
+app.use('/', authRouter); //to localhost:3000/signup get post
 app.use('/users', usersRouter);
 app.use('/gallery',galleryRouter);
 

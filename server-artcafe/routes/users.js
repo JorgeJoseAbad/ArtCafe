@@ -13,12 +13,6 @@ router.post('/login',((req,res,next)=>{
   })
 );
 
-/* Post users signup, this is a test OK */
-router.post('/signup',((req,res,next)=>{
-     console.log(req.body);
-    res.send(req.body);
-  })
-);
 
 /* POST users listing with params. this is a test OK*/
 router.post('/:id',((req,res,next)=>{

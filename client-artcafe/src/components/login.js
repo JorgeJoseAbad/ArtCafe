@@ -28,7 +28,7 @@ export class Login extends Component{
   }
 
   loginPost=(state)=>{
-    axios.post('http://localhost:3000/users/login',state)
+    axios.post('http://localhost:3000/login',state)
     .then((res)=>console.log(res))
     .catch(e=>console.log(e))
   }
