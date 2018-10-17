@@ -9,7 +9,8 @@ export class Login extends Component{
         password: ''
     };
     this.state = this.initialState;
-
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange = event => {
@@ -20,38 +21,23 @@ export class Login extends Component{
       });
   }
 
-  submitForm = () => {
-      //this.props.handleSubmit(this.state);
-      this.callBackEndPost(this.state)
+  handleSubmit = () => {
+      this.loginPost(this.state)
       this.setState(this.initialState);
   }
 
-  /*function callBackEnd(){
-    axios.get('http://localhost:3000/users')
-    .then((res)=>console.log(res))
-    .catch(error=>console.log(error));
-  }*/
-
-  callBackEndPost=(state)=>{
-
+  loginPost=(state)=>{
     axios.post('http://localhost:3000/users/login',state)
     .then((res)=>console.log(res))
     .catch(e=>console.log(e))
   }
 
-  /*function callBackEndPostParam(){
-    let prueba='prueba';
-    axios.post('http://localhost:3000/users/jorge',{prueba})
-    .then((res)=>console.log(res))
-    .catch(e=>console.log(e))
-  }*/
 
 render(){
   const {username,password}=this.state;
   return(
     <div>
       <div className="page">
-
         <img style={{width:100}} alt="CarlosSainz" src="https://instagram.fmad3-6.fna.fbcdn.net/vp/e2831892fe54726bc725854514d818bb/5C4D2598/t51.2885-15/sh0.08/e35/s640x640/43438078_333374877223205_9014798235918047786_n.jpg"/>
       </div>
 
@@ -85,7 +71,7 @@ render(){
                 className="btn btn-primary"
                 type="submit"
                 value="Submit"
-                onClick={this.submitForm}
+                onClick={this.handleSubmit}
               >
                 login
               </button>

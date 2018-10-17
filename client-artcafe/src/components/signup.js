@@ -10,32 +10,27 @@ export class Signup extends Component{
       email:'',
       description:'',
       isArtist:false,
-
     }
     this.state=this.initialState
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-
   handleChange = event => {
-      const {name, value} = event.target;
-      console.log(name,value);
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
       this.setState({
-          [name] : value,
-
-
+          [name] : value
       });
   }
 
-
-
-  submitForm = () => {
-      //this.props.handleSubmit(this.state);
+  handleSubmit = () => {
       this.sendSignup(this.state)
       this.setState(this.initialState);
   }
 
   sendSignup=(state)=>{
-
     axios.post('http://localhost:3000/users/signup',state)
     .then((res)=>console.log(res))
     .catch(e=>console.log(e))
@@ -46,7 +41,6 @@ render(){
   return(
     <div>
       <div className="page">
-
         <img style={{width:100}} alt="CarlosSainzagain" src="https://instagram.fmad3-6.fna.fbcdn.net/vp/e2831892fe54726bc725854514d818bb/5C4D2598/t51.2885-15/sh0.08/e35/s640x640/43438078_333374877223205_9014798235918047786_n.jpg"/>
       </div>
       <div className="container">
@@ -101,8 +95,8 @@ render(){
                 <input
                   type="checkbox"
                   name="isArtist"
-                  value={isArtist}
-                  defaultChecked={this.state.isArtist}
+
+                  checked={isArtist}
                   onChange={this.handleChange}
                 />
               </div>
@@ -112,7 +106,7 @@ render(){
               <button
                 className="btn btn-primary"
                 type="submit"
-                onClick={this.submitForm}
+                onClick={this.handleSubmit}
               >Signup</button>
             </form>
           </div>
