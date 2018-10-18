@@ -41,6 +41,7 @@ export class Login extends Component{
         serverResponse:res.data.message,
         userResponse:res.data.username
       })
+      this.props.getUserName(this.state.userResponse);
 
     })
     .catch(e=>console.log(e))
@@ -55,7 +56,7 @@ handleLogout = ()=>{
      this.setState({
        serverResponse:res.data.message
      })
-
+     this.props.getUserName('');
    })
    .catch(e=>console.log(e))
 }

@@ -9,16 +9,30 @@ import {Gallery} from './components/gallery.js';
 import {Login} from './components/login.js';
 import {Signup} from './components/signup.js';
 
+
+let userLogged='';
+
+const getUserName=(user)=>{
+  console.log("this is a prueba",user);
+  userLogged=user;
+  console.log(userLogged);
+}
+
+
+
 const Routes = () => {
   return [
-    <Route exact path="/" key="r0" component={()=><Gallery title="Hola"/>} />,
-    <Route path="/gallery" key="r1" component={Gallery}/>,
-    <Route path="/login" key="r2" component={Login} />,
+    <Route exact path="/" key="r0" component={Gallery} />,
+    <Route path="/gallery" key="r1" component={()=><Gallery title="Hola" user={userLogged}/>}/>,
+    <Route path="/login" key="r2" component={()=><Login getUserName={getUserName}/>} />,
     <Route path="/signup" key="r3" component={Signup} />
   ]
   };
 
 class App extends Component {
+
+
+
   render() {
     return (
       <Router>
@@ -40,7 +54,7 @@ class App extends Component {
           <header className="App-header"  style={{backgroundImage:`url(${Background})`,color:'black'}}>
 
             <h1>YOUR COFEE FOR ARTIST AND ART LOVERS ALL ARROUND THE WORLD</h1>
-            <img src={logo} className="App-logo" alt="ArtCafe" />  
+            <img src={logo} className="App-logo" alt="ArtCafe" />
             <h2>Artist thrive here</h2>
             <p>The place where you can buy the better artworks or auction your creations</p>
           </header>
