@@ -15,7 +15,7 @@ authRoutes.get("/logout", (req, res, next) => {
   req.session.destroy((err) => {
     // cannot access session here
     //res.redirect("/login");
-    res.send('logout hecho')
+    res.send({message:'logout made!'})
   });
 });
 
@@ -33,13 +33,15 @@ authRoutes.post("/signup", (req, res, next) => {
   const isArtist = req.body.isArtist;
 
   if (username === "" || password === "") {
-    res.render("auth/signup", { message: "Indicate username and password" });
+    res.send({ message: "Indicate username and password" });
+    //res.render("auth/signup", { message: "Indicate username and password" });
     return;
   }
 
   User.findOne({ username }, "username", (err, user) => {
     if (user !== null) {
-      res.render("auth/signup", { message: "The username already exists" });
+      res.send({ message: "The username already exists" });
+      //res.render("auth/signup", { message: "The username already exists" });
       return;
     }
 
@@ -56,9 +58,11 @@ authRoutes.post("/signup", (req, res, next) => {
 
     newUser.save((err) => {
       if (err) {
-        res.render("auth/signup", { message: "Something went wrong" });
+        res.send({ message: "Something went wrong" });
+        //res.render("auth/signup", { message: "Something went wrong" });
       } else {
-        res.redirect("/");
+        res.send({ message: "User Signup made!" });
+        //res.redirect("/");
       }
     });
   });
@@ -69,27 +73,34 @@ authRoutes.post("/login", (req, res, next) => {
   var password = req.body.password;
 
   if (username === "" || password === "") {
-    res.render("auth/login", {
-      errorMessage: "Indicate a username and a password to sign up"
-    });
+    res.send({message: "The username or password doesn't exist"})
+    //res.render("auth/login", {
+    //  errorMessage: "Indicate a username and a password to sign up"
+    //});
     return;
   }
 
   User.findOne({ "username": username }, (err, user) => {
       if (err || !user) {
-        res.render("auth/login", {
-          errorMessage: "The username doesn't exist"
-        });
+        res.send({message: "The username doesn't exist"});
+        //res.render("auth/login", {
+        //  errorMessage: "The username doesn't exist"
+        //});
         return;
       }
       if (bcrypt.compareSync(password, user.password)) {
         // Save the login in the session!
         req.session.currentUser = user;
-        res.redirect("/");
+        console.log(user);
+        res.send({message: "you are logged as: "+req.session.currentUser.username,
+        username:req.session.currentUser.username
+      }) //an eye to this
+        //res.redirect("/");
       } else {
-        res.render("auth/login", {
-          errorMessage: "Incorrect password"
-        });
+        res.send({message: "The password is incorrect"})
+        //res.render("auth/login", {
+        //  errorMessage: "Incorrect password"
+        //});
       }
   });
 });

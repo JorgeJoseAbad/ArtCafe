@@ -10,6 +10,8 @@ export class Signup extends Component{
       email:'',
       description:'',
       isArtist:false,
+
+      serverResponse:''
     }
     this.state=this.initialState
     this.handleChange = this.handleChange.bind(this);
@@ -33,7 +35,12 @@ export class Signup extends Component{
 
   sendSignup=(state)=>{
     axios.post('http://localhost:3000/signup',state)
-    .then((res)=>console.log(res))
+    .then((res)=>{
+      console.log(res)
+      this.setState({
+        serverResponse:res.data.message
+      });
+    })
     .catch(e=>console.log(e))
   }
 
@@ -43,6 +50,9 @@ render(){
     <div>
       <div className="page">
         <img style={{width:100}} alt="CarlosSainzagain" src="https://instagram.fmad3-6.fna.fbcdn.net/vp/e2831892fe54726bc725854514d818bb/5C4D2598/t51.2885-15/sh0.08/e35/s640x640/43438078_333374877223205_9014798235918047786_n.jpg"/>
+      </div>
+      <div>
+        {this.state.serverResponse}
       </div>
       <div className="container">
         <div className="row">

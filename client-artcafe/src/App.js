@@ -38,10 +38,9 @@ class App extends Component {
             </div>
           </nav>
           <header className="App-header"  style={{backgroundImage:`url(${Background})`,color:'black'}}>
-            <img src={logo} className="App-logo" alt="logo" />
-
 
             <h1>YOUR COFEE FOR ARTIST AND ART LOVERS ALL ARROUND THE WORLD</h1>
+            <img src={logo} className="App-logo" alt="ArtCafe" />  
             <h2>Artist thrive here</h2>
             <p>The place where you can buy the better artworks or auction your creations</p>
           </header>
