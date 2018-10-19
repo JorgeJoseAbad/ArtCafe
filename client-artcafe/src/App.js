@@ -14,22 +14,23 @@ import {Logout} from './components/logout.js';
 
 
 let userLogged='';
+let userLoggedId=''
 
-
-const getUserName=(user)=>{
-  console.log("this is a prueba",user);
+const getUserNameId=(user,id)=>{
+  console.log("this is a prueba",user,id);
   userLogged=user;
-  console.log(userLogged);
+  userLoggedId=id
+  console.log(userLogged,userLoggedId);
 }
 
 
 const MayRoutes = () => {
   return [
     <Route exact path="/" key="r0" component={Gallery} />,
-    <Route path="/gallery" key="r1" component={()=><Gallery title="Hola" user={userLogged}/>}/>,
-    <Route path="/login" key="r2" component={()=><Login getUserName={getUserName}/>} />,
+    <Route path="/gallery" key="r1" component={()=><Gallery title="Hola" user={userLogged} id={userLoggedId}/>}/>,
+    <Route path="/login" key="r2" component={()=><Login getUserNameId={getUserNameId}/>} />,
     <Route path="/signup" key="r3" component={Signup} />,
-    <Route path="/logout" key="r4" component={()=><Logout user={userLogged} getUserName={getUserName}/>} />
+    <Route path="/logout" key="r4" component={()=><Logout user={userLogged} getUserNameId={getUserNameId}/>} />
       ]
     };
 

@@ -1,4 +1,5 @@
 module.exports = [
+  "General",
   "Architecture",
   "Comic writing",
   "Digital art",

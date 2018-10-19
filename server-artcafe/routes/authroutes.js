@@ -93,8 +93,9 @@ authRoutes.post("/login", (req, res, next) => {
         req.session.currentUser = user;
         console.log(user);
         res.send({message: "you are logged as: "+req.session.currentUser.username,
-        username:req.session.currentUser.username
-      }) //an eye to this
+          username:req.session.currentUser.username,
+          _id:req.session.currentUser._id
+        }) //an eye to this
         //res.redirect("/");
       } else {
         res.send({message: "The password is incorrect"})

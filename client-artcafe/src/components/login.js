@@ -8,7 +8,8 @@ export class Login extends Component{
         username: '',
         password: '',
         serverResponse:'',
-        userResponse:''
+        userName:'',
+        userId:''
     };
 
 
@@ -39,9 +40,10 @@ export class Login extends Component{
       console.log(res);
       this.setState({
         serverResponse:res.data.message,
-        userResponse:res.data.username
+        userName:res.data.username,
+        userId:res.data._id
       })
-      this.props.getUserName(this.state.userResponse);
+      this.props.getUserNameId(this.state.userName,this.state.userId);
 
     })
     .catch(e=>console.log(e))
@@ -54,9 +56,10 @@ handleLogout = ()=>{
    .then((res)=>{
      console.log(res)
      this.setState({
-       serverResponse:res.data.message
+       serverResponse:res.data.message,
+       userId:''
      })
-     this.props.getUserName('');
+     this.props.getUserNameId('','');
    })
    .catch(e=>console.log(e))
 }

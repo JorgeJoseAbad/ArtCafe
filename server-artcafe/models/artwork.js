@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const TYPES = require('./artwork-types');
-const moment = require('moment');
+//const moment = require('moment');
 
 const ArtworkSchema = new Schema({
   title: {
@@ -15,6 +15,7 @@ const ArtworkSchema = new Schema({
   category: {
     type: String,
     enum: TYPES,
+    default: 'General',
     required: true
   },
   _creator: {
@@ -48,6 +49,7 @@ const ArtworkSchema = new Schema({
 });
 
 //mongoose virtuals
+/*
 ArtworkSchema.virtual('timeRemaining').get(function() {
   let remaining = moment(this.deadline).fromNow(true).split(' ');
   let [days, unit] = remaining;
@@ -65,5 +67,5 @@ ArtworkSchema.virtual('inputFormattedDate').get(function() {
 ArtworkSchema.methods.belongsTo = function(user) {
   return this._creator.equals(user._id);
 };
-
+*/
 module.exports = mongoose.model('Artwork', ArtworkSchema);
