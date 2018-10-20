@@ -26,7 +26,7 @@ const getUserNameId=(user,id)=>{
 
 const MayRoutes = () => {
   return [
-    <Route exact path="/" key="r0" component={Gallery} />,
+    <Route exact path="/" key="r0" component={()=><Gallery title="Hola" user={userLogged} id={userLoggedId}/>} />,
     <Route path="/gallery" key="r1" component={()=><Gallery title="Hola" user={userLogged} id={userLoggedId}/>}/>,
     <Route path="/login" key="r2" component={()=><Login getUserNameId={getUserNameId}/>} />,
     <Route path="/signup" key="r3" component={Signup} />,
