@@ -2,11 +2,23 @@ var express = require('express');
 var router = express.Router();
 const Artwork = require("../models/artwork.js");
 
-/* GET home page. */
+/* GET home page.
 router.get('/', function(req, res, next) {
   res.send('get gallery alcanzada')
+});*/
+
+/*Ok made get of all artwork and send front an array with them*/
+router.get('/', (req, res, next) => {
+  Artwork
+    .find({})
+    .populate('_creator')
+    .exec((err, gallery) => {
+      res.send(gallery)
+    });
+
 });
 
+/*OK made post of artwork on BBDD*/
 router.post('/', (req, res, next) => {
 
     console.log(req.body);
@@ -14,7 +26,7 @@ router.post('/', (req, res, next) => {
     title: req.body.title,
     startBid: req.body.startBid,
     description: req.body.description,
-    category: 'General',
+    category: req.body.category,
     //deadline: req.body.deadline,
     _creator: req.body._creator,
     pic_path: req.body.pic_path,

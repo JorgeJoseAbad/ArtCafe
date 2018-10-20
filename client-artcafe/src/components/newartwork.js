@@ -2,7 +2,6 @@ import React,{Component} from 'react'
 import axios from 'axios';
 
 
-
 export class Newartwork extends Component{
   constructor(props){
     super(props);
@@ -42,13 +41,10 @@ export class Newartwork extends Component{
     .catch(e=>console.log(e))
   }
 
-
-
   render(){
 
     const {title,description,category,startBid}=this.state
     return(
-
 
         <div className="container">
           <div className="row">
@@ -96,7 +92,21 @@ export class Newartwork extends Component{
                     onChange={this.handleChange}
                     className="custom-select btn-primary"
                     id="category"
-                  />
+                  >
+                    <option defaultValue="General">General</option>
+                    <option value="Architecture">Architecture</option>
+                    <option value="Comic writing">Comic writing</option>
+                    <option value="Digital art">Digital art</option>
+                    <option value="Drawing">Drawing</option>
+                    <option value="Engraving">Engraving</option>
+                    <option value="Jewellery">Jewellery</option>
+                    <option value="Graffiti">Graffiti</option>
+                    <option value="Painting">Painting</option>
+                    <option value="Photography">Photography</option>
+                    <option value="Pottery">Pottery</option>
+                    <option value="Sculpture">Sculpture</option>
+                    <option value="Woodwork">Woodwork</option>
+                  </select>
                 </div>
                 <div className="form-group">
                   <button onClick={this.handleSubmit}>send fakedata to gallery</button>
@@ -106,9 +116,7 @@ export class Newartwork extends Component{
           </div>
         </div>
 
-
-
-          )
+      )
   }
 
 }
