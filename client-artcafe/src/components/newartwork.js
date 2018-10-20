@@ -46,7 +46,10 @@ export class Newartwork extends Component{
     const {title,description,category,startBid}=this.state
     return(
 
-        <div className="container">
+        <div className="container" style={{
+          border:'2px solid red',
+          marginTop:20
+        }}>
           <div className="row">
             <div className="col-sm-offset-3 col-sm-6 centered-form">
               <div>Load new Artwork by {this.props.id}</div>
@@ -109,7 +112,7 @@ export class Newartwork extends Component{
                   </select>
                 </div>
                 <div className="form-group">
-                  <button onClick={this.handleSubmit}>send fakedata to gallery</button>
+                  <button onClick={this.handleSubmit}>Send New Artwork to Gallery</button>
                 </div>
               </form>
             </div>

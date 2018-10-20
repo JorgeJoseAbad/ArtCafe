@@ -10,6 +10,8 @@ export class Gallery extends Component {
     this.state=({
       arrayGallery:[]
     })
+
+    this.getGallery();
   }
 
   handleSubmit=()=>{
@@ -31,21 +33,21 @@ export class Gallery extends Component {
       else toNewArtwork=<div>You are no logged and can't load artwork</div>
 
       const artworkList = this.state.arrayGallery.map((art,index)=>{
-         return <Artwork art={art} key={index}/>
+         return <Artwork art={art} key={index} visitor={this.props.user}/>
            })
 
     return(
 
           <div className="page">
             <pre>Hola {this.props.user} your id is {this.props.id}!!!!</pre>
-            <div className="container">
+            <div className="container-fluid">
               <div className="row">
 
                 {artworkList}
 
               </div>
             </div>
-            <button onClick={this.handleSubmit}>get Gallery</button>
+            {/*<button onClick={this.handleSubmit}>get Gallery</button>*/}
 
             {toNewArtwork}
           </div>
