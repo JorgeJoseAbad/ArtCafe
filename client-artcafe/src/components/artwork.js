@@ -16,11 +16,7 @@ export class Artwork extends Component{
     })
   }
 
-  handleSubmit=()=>{
-    console.log(this.state.visitor,this.state.owner)
 
-
-      }
 
   render(){
     console.log("Artoworks: ",this.props)
@@ -31,17 +27,34 @@ export class Artwork extends Component{
         param3: this.state.dataID
       };
     return(
-      <div className="col-md-4" style={{backgroundColor:'#ddf0f7'}}>
-        <h4>{this.props.art.title}</h4>
-        <img alt="foto" style={{width:200}} src={this.props.art.pic_path}/>
-        <p>{this.props.art.category}</p>
-        <p>{this.props.art.description}</p>
-        <p>{this.props.art.startBid}</p>
-        An work of: <p>{this.props.art._creator.username}</p>
-        Do you like details?
+      <div className="col-md-4">
+        <div cassName="artwork-slide" style={{
+          padding:5,
+          marginBottom:20,
+          height:200,
+          backgroundImage: `url(${this.props.art.pic_path})`,
+          backgroundSize: 'cover',
+          boxShadow: '6px 5px 5px black'
+        }}>
+          <div className="basicdata"
+            style={{
+              color:'white',
+              backgroundColor:'rgba(0, 0, 0, 0.5)',
+              width:'inherit'
+            }}>
+            <h4>
+              <Link style={{
+                color:'white',
 
-        <button onClick={this.handleSubmit}><Link to={newTo} dataset={this.state}>Go</Link></button>
+              }} to={newTo} dataset={this.state}
+              >{this.props.art.title}
+              </Link>
+            </h4>
+            <p>{this.props.art.startBid} by {this.props.art._creator.username}</p>
+          </div>
         </div>
+      </div>
+
     )
   }
 

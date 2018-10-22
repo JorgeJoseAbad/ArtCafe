@@ -29,19 +29,55 @@ export class Artworkdetail extends Component{
    console.log(this.props)
    console.log(this.state);
    return(
-      <div style={{
-        backgroundImage: `url(${this.state.artworkData.pic_path})`,
-        backgroundSize: 'cover',
+      <div className="container artworkdetail-main" style={{
+        backgroundColor:'AliceBlue',
         margin: '0 auto',
-        width:600,
+        maxWidth:800,
         height:400,
-        color:'white',
+        color:'MidnightBlue',
         fontSize:30
       }}
       >
-        Hello {this.state.userVisitor}
-        this is an artwork from {this.state.artworkCreator}
-        <img alt="art" width="200px" src={this.state.pic_path}/>
+        <div className="row artworkdetail-header">
+          <div className="col-md-2">{this.state.userVisitor}</div>
+          <div className="col-md-6">{this.state.title}</div>
+          <div className="col-md-2">{this.state.startBid}</div>
+          <div className="col-md-2">{this.state.category}</div>
+        </div>
+
+
+        <div className="row">
+          <div
+            style={{
+                float:'Left',
+                overflow: 'auto',
+                boxShadow: '6px 5px 5px black'
+            }}
+            className="col-md-4 artworkdetail-img"
+          >
+            <img alt="art" width="300px" src={this.state.pic_path}/>
+          </div>
+          <div className="col-md-8">
+
+            <div
+              style={{
+
+                  margin:10,
+                  border:'1px solid blue',
+                  boxShadow: '2px 2px 2px 2px blue'
+              }}
+              className="artworkdetail-description"
+            >
+              {this.state.description}
+            </div>
+            <div className="artworkdetail-options">
+              <button>First</button>
+              <button>Second</button>
+              <button>Tirch</button>
+              this is an artwork from {this.state.artworkCreator}
+            </div>
+          </div>
+        </div>
       </div>
    )
  }
