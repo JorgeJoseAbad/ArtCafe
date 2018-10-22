@@ -28,7 +28,7 @@ export class Artwork extends Component{
       };
     return(
       <div className="col-md-4">
-        <div cassName="artwork-slide" style={{
+        <div className="artwork-slide" style={{
           padding:5,
           marginBottom:20,
           height:200,

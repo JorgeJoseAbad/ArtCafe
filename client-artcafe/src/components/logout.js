@@ -7,7 +7,7 @@ export class Logout extends Component{
   handleLogout = ()=>{
     axios.get('http://localhost:3000/logout')
      .then((res)=>{
-         this.props.getUserName('');
+         this.props.getUserNameId('');
      })
      .catch(e=>console.log(e))
   }
