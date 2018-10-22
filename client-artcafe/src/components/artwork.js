@@ -12,7 +12,7 @@ export class Artwork extends Component{
     this.state=({
       visitor:this.props.visitor,
       owner:this.props.art._creator.username,
-      data:this.props
+      dataID:this.props.art._id
     })
   }
 
@@ -23,11 +23,12 @@ export class Artwork extends Component{
       }
 
   render(){
-    console.log(this.props)
+    console.log("Artoworks: ",this.props)
     const newTo = {
         pathname: "/Artworkdetail",
-        param1: this.state.owner,
-        param2: this.state.data
+        param1: this.state.visitor,
+        param2: this.state.owner,
+        param3: this.state.dataID
       };
     return(
       <div className="col-md-4" style={{backgroundColor:'#ddf0f7'}}>

@@ -46,6 +46,19 @@ debugger
   });
 });
 
+/*NEwww */
+router.get('/:id', (req, res, next) => {
+  let id=req.params.id;
+  console.log("en router",req.params.id);
+  Artwork
+    .findById(id)
+
+    .exec((err, artwork) => {
+      res.send(artwork)
+    });
+
+});
+
 
 
 module.exports=router;
