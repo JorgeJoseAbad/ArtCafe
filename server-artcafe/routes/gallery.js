@@ -3,8 +3,18 @@ const router = express.Router();
 const multer  = require('multer')
 const Artwork = require("../models/artwork.js");
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now()+'.jpg')
+  }
+})
+
+
 const upload = multer({
-  dest: './public/uploads/'
+  storage:storage
 });
 
 /* GET home page.
