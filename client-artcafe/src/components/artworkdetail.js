@@ -10,9 +10,16 @@ export class Artworkdetail extends Component{
       userVisitor:this.props.location.param1,
       artworkCreator:this.props.location.param2,
       artworkID:this.props.location.param3,
-      artworkData:''
+      artworkData:'',
+      selectedFile:null,
+
     })
     this.getArtwork()
+
+    this.fileInput = React.createRef(); //optative!!!
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleselectedFile=this.handleselectedFile.bind(this);
   }
 
   getArtwork=()=>{
@@ -24,6 +31,34 @@ export class Artworkdetail extends Component{
     .catch(e=>console.log(e))
   }
 
+  handleselectedFile = event => {
+    console.log(event);
+      let selectedFile = document.getElementById('input').files[0];
+      this.setState({
+        selectedFile: selectedFile,
+      })
+    }
+
+  handleSubmit=(event)=>{
+    console.log(event)
+    console.log(this.fileInput.current.files[0]);
+    event.preventDefault();
+    const data = new FormData()
+    data.append('artworkImage', this.state.selectedFile)
+    const config = {
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+    }
+
+    axios.post(`http://localhost:3000/gallery/upload/${this.state.artworkID}`,data,config)
+    .then((res)=>{
+      console.log(res)
+
+    })
+    .catch(e=>console.log(e))
+ }
+
  render(){
    let newToEdit={
      pathname: "/editartwork",
@@ -31,19 +66,50 @@ export class Artworkdetail extends Component{
 
    }
 
+   const {pic_path}=this.state.artworkData;
+
    let options;
    if (this.state.userVisitor===this.state.artworkCreator)
       options=
-      <button
-        type="button"
-        className="btn btn-primary"
-        style={{color:'black'}}
-      ><Link to={newToEdit}>Edit</Link></button>
+      <div>
+        <form onSubmit={this.handleSubmit} encType="multipart/form-data">
+          <label
+            htmlFor="pic_path"
+          >
+            Upload a new photo for this artwork
+          </label>
+          <input
+            type="file"
+            id="input"
+            ref={this.fileInput}
+            onChange={this.handleselectedFile}
+          />
+          <input type="hidden" value="<%= artwork._id%>" name="_id" id="upload-photo" className="form-control"/>
+          <input type="submit" value="Submit" />
+        </form>
+
+        <button
+          type="button"
+          className="btn btn-primary"
+          style={{color:'black'}}
+        >
+          <Link to={newToEdit}>Edit</Link>
+        </button>
+
+        <button
+          type="button"
+          className="btn btn-primary"
+          style={{color:'black'}}
+        >
+          DELETE
+        </button>
+      </div>
+
    else options=
-   <div>
-     <b>This is a ganga {this.state.startBid}</b>
-     <button type="button" className="btn btn-secondary">Buy</button>
-   </div>
+     <div>
+       <b>This is a ganga {this.state.startBid}</b>
+       <button type="button" className="btn btn-secondary">Buy</button>
+     </div>
 
    return(
       <div

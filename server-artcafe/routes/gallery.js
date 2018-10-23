@@ -1,11 +1,38 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const multer  = require('multer')
 const Artwork = require("../models/artwork.js");
+
+const upload = multer({
+  dest: './public/uploads/'
+});
 
 /* GET home page.
 router.get('/', function(req, res, next) {
   res.send('get gallery alcanzada')
 });*/
+
+
+/*Rpute provisional upload image*/
+router.post('/upload/:id', upload.single('artworkImage'), (req, res) => {
+  console.log(req.body);
+  console.log(req.params.id);
+
+  console.log(req.file)
+  pic_path = "/uploads/" + req.file.filename;
+
+  Artwork.findByIdAndUpdate(req.params.id, {
+    pic_path
+  }, (err, image) => {
+    if (err) {
+      return next(err);
+    }
+    return res.send("exito en la carga de imagen");
+  });
+
+});
+
+
 
 /*Ok made get of all artwork and send front an array with them*/
 router.get('/', (req, res, next) => {

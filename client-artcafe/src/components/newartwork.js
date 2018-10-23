@@ -36,6 +36,7 @@ export class Newartwork extends Component{
   }
 
   postGallery=(state)=>{
+    console.log(state);
     axios.post('http://localhost:3000/gallery',state)
     .then((res)=>console.log(res.data))
     .catch(e=>console.log(e))
