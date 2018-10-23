@@ -19,10 +19,10 @@ export class Gallery extends Component {
   }
 
   getGallery=()=>{
+    let prov=[]
     axios.get('http://localhost:3000/gallery')
     .then((res)=>{
-      this.setState(this.state.arrayGallery=res.data);
-
+      this.setState({arrayGallery:res.data});
     })
     .catch(e=>console.log(e))
   }

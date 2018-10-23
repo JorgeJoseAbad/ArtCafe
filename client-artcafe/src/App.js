@@ -12,6 +12,7 @@ import {Signup} from './components/signup.js';
 import {Logout} from './components/logout.js';
 
 import {Artworkdetail} from './components/artworkdetail.js';
+import {Editartwork} from './components/editartwork.js'
 
 
 
@@ -33,9 +34,10 @@ const MayRoutes = () => {
     <Route path="/login" key="r2" component={()=><Login getUserNameId={getUserNameId}/>} />,
     <Route path="/signup" key="r3" component={Signup} />,
     <Route path="/logout" key="r4" component={()=><Logout user={userLogged} getUserNameId={getUserNameId}/>} />,
-    <Route path="/artworkdetail" key="r5" component={Artworkdetail}/>
+    <Route path="/artworkdetail" key="r5" component={Artworkdetail}/>,
+    <Route path="/editartwork" key="r6" component={Editartwork}/>
       ]
-    };
+      };
 
 
 

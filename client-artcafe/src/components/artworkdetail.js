@@ -1,5 +1,7 @@
 import React,{Component} from 'react'
 import axios from 'axios';
+import {Editartwork} from './editartwork';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 export class Artworkdetail extends Component{
   constructor(props){
@@ -7,35 +9,48 @@ export class Artworkdetail extends Component{
     this.state=({
       userVisitor:this.props.location.param1,
       artworkCreator:this.props.location.param2,
-      arworkID:this.props.location.param3,
+      artworkID:this.props.location.param3,
       artworkData:''
     })
     this.getArtwork()
   }
 
   getArtwork=()=>{
-    axios.get(`http://localhost:3000/gallery/${this.state.arworkID}`)
+    axios.get(`http://localhost:3000/gallery/${this.state.artworkID}`)
     .then((res)=>{
-      this.setState(this.state.artworkData=res.data);
+      this.setState({artworkData:res.data});
 
     })
     .catch(e=>console.log(e))
   }
 
  render(){
-   console.log(this.props)
-   console.log(this.state);
+   let newToEdit={
+     pathname: "/editartwork",
+     param1: this.state.artworkID
+
+   }
 
    let options;
    if (this.state.userVisitor===this.state.artworkCreator)
-      options=<button>Edit</button>
-   else options=<button>Buy</button>
+      options=
+      <button
+        type="button"
+        className="btn btn-primary"
+        style={{color:'black'}}
+      ><Link to={newToEdit}>Edit</Link></button>
+   else options=
+   <div>
+     <b>This is a ganga {this.state.startBid}</b>
+     <button type="button" className="btn btn-secondary">Buy</button>
+   </div>
 
    return(
       <div
         className="container artworkdetail-main"
         style={{
           backgroundColor:'AliceBlue',
+          border: '5px solid hsla(155, 50%, 10%, 1)',
           margin: '0 auto',
           maxWidth:900,
           height:400,
@@ -50,36 +65,38 @@ export class Artworkdetail extends Component{
           }}
         >
           <div className="col-md-2">{this.state.userVisitor}</div>
-          <div className="col-md-6">{this.state.title}</div>
-          <div className="col-md-2">{this.state.startBid}</div>
-          <div className="col-md-2">{this.state.category}</div>
+          <div className="col-md-6">{this.state.artworkData.title}</div>
+          <div className="col-md-2">{this.state.artworkCreator}</div>
+          <div className="col-md-2">{this.state.artworkData.category}</div>
         </div>
         <div className="row">
           <div
-            style={{
-                float:'Left',
-                overflow: 'auto',
-                boxShadow: '6px 5px 5px black'
-            }}
             className="col-md-4 artworkdetail-img"
+            style={{
+                boxShadow: '6px 5px 5px black',
+                border: '1px solid black',
+                padding:0
+            }}
           >
-            <img alt="art" width="300px" src={this.state.pic_path}/>
+            <img
+              alt="art"
+              style={{width:'inherit',height:'auto'}}
+              src={this.state.artworkData.pic_path}
+            />
           </div>
           <div className="col-md-8">
             <div
+              className="artworkdetail-description"
               style={{
                   margin:10,
                   border:'1px solid blue',
                   boxShadow: '2px 2px 2px 2px blue'
               }}
-              className="artworkdetail-description"
             >
-              {this.state.description}
+              {this.state.artworkData.description}
             </div>
             <div className="artworkdetail-options">
               {options}
-
-              this is an artwork from {this.state.artworkCreator}
             </div>
           </div>
         </div>
