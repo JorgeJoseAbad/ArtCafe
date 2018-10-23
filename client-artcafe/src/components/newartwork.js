@@ -113,7 +113,9 @@ export class Newartwork extends Component{
                   </select>
                 </div>
                 <div className="form-group">
-                  <button onClick={this.handleSubmit}>Send New Artwork to Gallery</button>
+                  <button onClick={this.handleSubmit}>
+                    Send New Artwork to Gallery
+                  </button>
                 </div>
               </form>
             </div>

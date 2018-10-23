@@ -17,11 +17,6 @@ const upload = multer({
   storage:storage
 });
 
-/* GET home page.
-router.get('/', function(req, res, next) {
-  res.send('get gallery alcanzada')
-});*/
-
 
 /*Rpute provisional upload image*/
 router.post('/upload/:id', upload.single('artworkImage'), (req, res) => {

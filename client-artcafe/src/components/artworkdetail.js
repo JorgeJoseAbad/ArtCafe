@@ -51,7 +51,8 @@ export class Artworkdetail extends Component{
         }
     }
 
-    axios.post(`http://localhost:3000/gallery/upload/${this.state.artworkID}`,data,config)
+    axios.post(`http://localhost:3000/gallery/upload/${this.state.artworkID}`
+      ,data,config)
     .then((res)=>{
       console.log(res)
 
@@ -84,7 +85,11 @@ export class Artworkdetail extends Component{
             ref={this.fileInput}
             onChange={this.handleselectedFile}
           />
-          <input type="hidden" value="<%= artwork._id%>" name="_id" id="upload-photo" className="form-control"/>
+          <input
+            type="hidden" value="<%= artwork._id%>"
+            name="_id" id="upload-photo"
+            className="form-control"
+          />
           <input type="submit" value="Submit" />
         </form>
 

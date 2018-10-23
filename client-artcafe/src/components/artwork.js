@@ -48,7 +48,10 @@ export class Artwork extends Component{
               >{this.props.art.title}
               </Link>
             </h4>
-            <p>{this.props.art.startBid} by {this.props.art._creator.username}</p>
+            <p>
+              {this.props.art.startBid} by
+              {this.props.art._creator.username}
+            </p>
           </div>
         </div>
       </div>

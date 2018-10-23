@@ -29,8 +29,10 @@ export class Gallery extends Component {
 
   render(){
       let toNewArtwork;
-      if (this.props.id&&(this.props.id!=='')) toNewArtwork=<Newartwork id={this.props.id}/>
-      else toNewArtwork=<div>You are no logged and can't load artwork</div>
+      if (this.props.id&&(this.props.id!==''))
+        toNewArtwork=<Newartwork id={this.props.id}/>
+      else 
+        toNewArtwork=<div>You are no logged and can't load artwork</div>
 
       const artworkList = this.state.arrayGallery.map((art,index)=>{
          return <Artwork art={art} key={index} visitor={this.props.user}/>

@@ -18,7 +18,6 @@ render(){
     <div>
       {this.props.user}
       <button onClick={this.handleLogout}>Make Logout</button>
-
     </div>)
   }
 
