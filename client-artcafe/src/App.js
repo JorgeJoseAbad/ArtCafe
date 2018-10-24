@@ -14,7 +14,8 @@ import {Signup} from './components/signup.js';
 import {Logout} from './components/logout.js';
 
 import {Artworkdetail} from './components/artworkdetail.js';
-import {Editartwork} from './components/editartwork.js'
+import {Editartwork} from './components/editartwork.js';
+import {Edituser} from './components/edituser.js';
 
 
 
@@ -43,66 +44,67 @@ const MayRoutes = () => {
     <Route path="/logout" key="r4" component={()=><Logout user={userLogged}
       getUserNameId={getUserNameId}/>} />,
     <Route path="/artworkdetail" key="r5" component={Artworkdetail}/>,
-    <Route path="/editartwork" key="r6" component={Editartwork}/>
+    <Route path="/editartwork" key="r6" component={Editartwork}/>,
+    <Route path="/edituser" key="r7" component={()=><Edituser userID={userLoggedId}/>}/>
       ]
-};
-
+    };
 
 
 class App extends Component {
-render() {
-  return (
 
-    <div className="App">
+  render() {
+    return (
 
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">
-          <img src={logoclaim} width="50" height="50" alt=""/>
-        </a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse"
-          data-target="#navbarNav" aria-controls="navbarNav"
-          aria-expanded="false" aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item active"><Link to="/">Portada</Link></li>
-            <li className="nav-item"><Link to="/gallery">Gallery</Link></li>
+      <div className="App">
 
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a className="navbar-brand" href="/">
+            <img src={logoclaim} width="50" height="50" alt=""/>
+          </a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item active"><Link to="/">Portada</Link></li>
+              <li className="nav-item"><Link to="/gallery">Gallery</Link></li>
+            </ul>
             {
               userLogged===''?
-                <div>
-                  <li className="nav-item"><Link to="/signup">Signup</Link></li>
-                  <li className="nav-item"><Link to="/login">Login</Link></li>
-                </div>
+                <ul className="navbar-nav">
+                  <li className="nav-item" style={{display:'inline-block'}}><Link to="/signup">Signup</Link></li>
+                  <li className="nav-item" style={{display:'inline-block'}}><Link to="/login">Login</Link></li>
+                </ul>
               :
-              <div>
-                <li className="nav-item">
+              <ul className="navbar-nav">
+                <li className="nav-item" style={{display:'inline-block'}}>
                   <Link to="/logout">Logout</Link>
                 </li>
-                <li className="nav-image-profile">
-                  <img src={ProvLogo} width="30" height="30" alt=""/>
+                <li className="nav-image-profile" style={{display:'inline-block'}}>
+                  <img src={this.userLoggedLogo} width="30" height="30" alt=""/>
                 </li>
-                <li className="nav-item">
-                  <Link to="/">{userLogged}</Link>
+                <li className="nav-item" style={{display:'inline-block'}}>
+                  <Link to="/edituser">{userLogged}</Link>
                 </li>
-              </div>
+              </ul>
             }
-          </ul>
-        </div>
-      </nav>
-      <header className="App-header"
-        style={{backgroundImage:`url(${Background})`,color:'black'}}>
-        <h1>YOUR COFEE FOR ARTIST AND ART LOVERS ALL ARROUND THE WORLD</h1>
-        <img src={logo} className="App-logo" alt="ArtCafe" />
-        <h2>Artist thrive here</h2>
-        <p>The place where you can buy the better artworks or
-        auction your creations</p>
-      </header>
-      <MayRoutes />
 
-    </div>
+          </div>
+        </nav>
+        <header className="App-header"
+          style={{backgroundImage:`url(${Background})`,color:'black'}}>
+          <h1>YOUR COFEE FOR ARTIST AND ART LOVERS ALL ARROUND THE WORLD</h1>
+          <img src={logo} className="App-logo" alt="ArtCafe" />
+          <h2>Artist thrive here</h2>
+          <p>The place where you can buy the better artworks or
+          auction your creations</p>
+        </header>
+        <MayRoutes />
+
+      </div>
     );
   }
 }
