@@ -3,8 +3,10 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import logo from './logos/logo.svg';
+import logoclaim from './logos/logo-claim.svg';
 import './App.css';
 import Background from './logos/fondo.jpg';
+import ProvLogo from './logos/user_color.png'; //provisional
 
 import {Gallery} from './components/gallery.js';
 import {Login} from './components/login.js';
@@ -18,12 +20,14 @@ import {Editartwork} from './components/editartwork.js'
 
 let userLogged='';
 let userLoggedId=''
+let userLoggedLogo=''
 
-const getUserNameId=(user,id)=>{
-  console.log("this is a prueba",user,id);
+const getUserNameId=(user,id,pick_path)=>{
+  console.log("this is a prueba",user,id,pick_path);
   userLogged=user;
-  userLoggedId=id
-  console.log(userLogged,userLoggedId);
+  userLoggedId=id;
+  userLoggedLogo=pick_path;
+  console.log(userLogged,userLoggedId,userLoggedLogo);
 }
 
 
@@ -41,7 +45,7 @@ const MayRoutes = () => {
     <Route path="/artworkdetail" key="r5" component={Artworkdetail}/>,
     <Route path="/editartwork" key="r6" component={Editartwork}/>
       ]
-      };
+};
 
 
 
@@ -52,7 +56,9 @@ render() {
     <div className="App">
 
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="/">Navbar</a>
+        <a class="navbar-brand" href="/">
+          <img src={logoclaim} width="50" height="50" alt=""/>
+        </a>
         <button className="navbar-toggler" type="button" data-toggle="collapse"
           data-target="#navbarNav" aria-controls="navbarNav"
           aria-expanded="false" aria-label="Toggle navigation"
@@ -63,14 +69,25 @@ render() {
           <ul className="navbar-nav">
             <li className="nav-item active"><Link to="/">Portada</Link></li>
             <li className="nav-item"><Link to="/gallery">Gallery</Link></li>
-            <li className="nav-item"><Link to="/signup">Signup</Link></li>
+
             {
               userLogged===''?
-                <li className="nav-item"><Link to="/login">Login</Link></li>
+                <div>
+                  <li className="nav-item"><Link to="/signup">Signup</Link></li>
+                  <li className="nav-item"><Link to="/login">Login</Link></li>
+                </div>
               :
-              <li className="nav-item">
-                <Link to="/logout">Logout: {userLogged}</Link>
-              </li>
+              <div>
+                <li className="nav-item">
+                  <Link to="/logout">Logout</Link>
+                </li>
+                <li className="nav-image-profile">
+                  <img src={ProvLogo} width="30" height="30" alt=""/>
+                </li>
+                <li className="nav-item">
+                  <Link to="/">{userLogged}</Link>
+                </li>
+              </div>
             }
           </ul>
         </div>

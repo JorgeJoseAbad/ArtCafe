@@ -25,7 +25,7 @@ const UserSchema = new Schema({
   },
   pic_path: {
     type: String,
-    default: "../images/user_color.png"
+    default: "./logos/user_color.png"
   },
   dateRegister: Date, //deberá hacerlo el sistema
 }, {
