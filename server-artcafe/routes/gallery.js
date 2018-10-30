@@ -18,6 +18,33 @@ const upload = multer({
 });
 
 
+/*Rpute provisional to edit artwork*/
+router.put('/:id', (req, res) => {
+  console.log(req.body);
+  console.log(req.params.id);
+
+  const editedArtwork={
+    artworkID: req.body.artworkID,
+    title: req.body.title,
+    description: req.body.description,
+    category: req.body.category,
+    startBid: req.body.startBid,
+  }
+
+
+  Artwork.findByIdAndUpdate(req.params.id, editedArtwork,(err,artwork) => {
+    if (err) {
+      console.log(err)
+      return next(err);
+    } else {
+      console.log("exito!!!!!");
+      return res.send(artwork);
+    }
+  });
+
+});
+
+
 /*Rpute provisional upload image*/
 router.post('/upload/:id', upload.single('artworkImage'), (req, res) => {
   console.log(req.body);
@@ -26,9 +53,7 @@ router.post('/upload/:id', upload.single('artworkImage'), (req, res) => {
   console.log(req.file)
   pic_path = "/uploads/" + req.file.filename;
 
-  Artwork.findByIdAndUpdate(req.params.id, {
-    pic_path
-  }, (err, image) => {
+  Artwork.findByIdAndUpdate(req.params.id, {pic_path}, (err, image) => {
     if (err) {
       return next(err);
     }
