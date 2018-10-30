@@ -12,9 +12,10 @@ export class Artworkdetail extends Component{
       artworkID:this.props.location.param3,
       artworkData:'',
       selectedFile:null,
+      result:'You can change image, edit data, or delete your artwork.',
 
-    })
-    this.getArtwork()
+    });
+    this.getArtwork();
 
     this.fileInput = React.createRef(); //optative!!!
 
@@ -32,14 +33,13 @@ export class Artworkdetail extends Component{
   }
 
   handleselectedFile = event => {
-    console.log(event);
-      let selectedFile = document.getElementById('input').files[0];
+      let selectedFile = document.getElementById('pic_path').files[0];
       this.setState({
         selectedFile: selectedFile,
       })
     }
 
-  handleSubmit=(event)=>{
+  handleSubmit = event =>{
     console.log(event)
     console.log(this.fileInput.current.files[0]);
     event.preventDefault();
@@ -55,9 +55,13 @@ export class Artworkdetail extends Component{
       ,data,config)
     .then((res)=>{
       console.log(res)
-
+      this.setState({result:res.data})
     })
-    .catch(e=>console.log(e))
+    .catch(
+      e=>{console.log(e);
+          this.setState({result:'Image load error'})
+        },
+    )
  }
 
  render(){
@@ -70,18 +74,19 @@ export class Artworkdetail extends Component{
    const {pic_path}=this.state.artworkData;
 
    let options;
+
    if (this.state.userVisitor===this.state.artworkCreator)
       options=
       <div>
         <form onSubmit={this.handleSubmit} encType="multipart/form-data">
-          <label
-            htmlFor="pic_path"
-          >
+          <label htmlFor="pic_path">
             Upload a new photo for this artwork
           </label>
-          <input
+          <input style={{maxWidth: 500}}
             type="file"
-            id="input"
+            name="pic_path"
+            id="pic_path"
+            accept=".jpg, .jpeg, .png"
             ref={this.fileInput}
             onChange={this.handleselectedFile}
           />
@@ -90,24 +95,46 @@ export class Artworkdetail extends Component{
             name="_id" id="upload-photo"
             className="form-control"
           />
-          <input type="submit" value="Submit" />
+          <input
+             type="submit"
+             value="Submit"
+             className="btn btn-primary"
+          />
         </form>
 
-        <button
-          type="button"
-          className="btn btn-primary"
-          style={{color:'black'}}
-        >
-          <Link to={newToEdit}>Edit</Link>
-        </button>
+        <div>
+          <button
+            type="button"
+            className="btn btn-primary"
+            style={{color:'black'}}
+          >
+            <Link
+              to={newToEdit}
+              style={{color:'black'}}
+              >
+              Edit
+            </Link>
+          </button>
+        </div>
 
-        <button
-          type="button"
-          className="btn btn-primary"
-          style={{color:'black'}}
-        >
-          DELETE
-        </button>
+        <div>
+          <button
+            type="button"
+            className="btn btn-primary"
+            style={{color:'black'}}
+          >
+            DELETE
+          </button>
+        </div>
+
+        <div
+          style={{
+            fontSize: 14,
+            color: 'blue',
+          }}>
+          Hi {this.state.artworkCreator}: {this.state.result}
+        </div>
+
       </div>
 
    else options=
@@ -124,7 +151,7 @@ export class Artworkdetail extends Component{
           border: '5px solid hsla(155, 50%, 10%, 1)',
           margin: '0 auto',
           maxWidth:900,
-          height:400,
+          height:'fit-content',
           color:'MidnightBlue',
           fontSize:30
         }}
@@ -146,13 +173,14 @@ export class Artworkdetail extends Component{
             style={{
                 boxShadow: '6px 5px 5px black',
                 border: '1px solid black',
+                height: 'fit-content',
                 padding:0
             }}
           >
             <img
               alt="art"
               style={{width:'inherit',height:'auto'}}
-              src={this.state.artworkData.pic_path}
+              src={pic_path}
             />
           </div>
           <div className="col-md-8">
@@ -166,7 +194,9 @@ export class Artworkdetail extends Component{
             >
               {this.state.artworkData.description}
             </div>
-            <div className="artworkdetail-options">
+            <div
+              className="artworkdetail-options"
+            >
               {options}
             </div>
           </div>

@@ -47,7 +47,6 @@ export class Signup extends Component{
     const {username,password,email,description,isArtist}=this.state
     return(
       <div>
-        
         <div>
           {this.state.serverResponse}
         </div>

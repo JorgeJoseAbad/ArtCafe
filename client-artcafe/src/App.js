@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import axios from 'axios';
+//import axios from 'axios';
 import logo from './logos/logo.svg';
 import logoclaim from './logos/logo-claim.svg';
 import './App.css';
 import Background from './logos/fondo.jpg';
-import ProvLogo from './logos/user_color.png'; //provisional
+//import ProvLogo from './logos/user_color.png'; //provisional
 
 import {Gallery} from './components/gallery.js';
 import {Login} from './components/login.js';
@@ -16,6 +16,7 @@ import {Logout} from './components/logout.js';
 import {Artworkdetail} from './components/artworkdetail.js';
 import {Editartwork} from './components/editartwork.js';
 import {Edituser} from './components/edituser.js';
+import {Newartwork} from './components/newartwork.js';
 
 
 
@@ -45,9 +46,12 @@ const MayRoutes = () => {
       getUserNameId={getUserNameId}/>} />,
     <Route path="/artworkdetail" key="r5" component={Artworkdetail}/>,
     <Route path="/editartwork" key="r6" component={Editartwork}/>,
-    <Route path="/edituser" key="r7" component={()=><Edituser userID={userLoggedId}/>}/>
-      ]
-    };
+    <Route path="/edituser" key="r7" component={()=><Edituser
+      userID={userLoggedId}/>}/>,
+    <Route path="/newartwork" key="r8" component={()=><Newartwork
+      id={userLoggedId}/>}/>
+  ]
+};
 
 
 class App extends Component {
@@ -75,15 +79,19 @@ class App extends Component {
             {
               userLogged===''?
                 <ul className="navbar-nav">
-                  <li className="nav-item" style={{display:'inline-block'}}><Link to="/signup">Signup</Link></li>
-                  <li className="nav-item" style={{display:'inline-block'}}><Link to="/login">Login</Link></li>
+                  <li className="nav-item" style={{display:'inline-block'}}>
+                  <Link to="/signup">Signup</Link></li>
+                  <li className="nav-item" style={{display:'inline-block'}}>
+                  <Link to="/login">Login</Link></li>
                 </ul>
               :
               <ul className="navbar-nav">
                 <li className="nav-item" style={{display:'inline-block'}}>
                   <Link to="/logout">Logout</Link>
                 </li>
-                <li className="nav-image-profile" style={{display:'inline-block'}}>
+                <li className="nav-image-profile" style={{
+                  display:'inline-block'
+                }}>
                   <img src={this.userLoggedLogo} width="30" height="30" alt=""/>
                 </li>
                 <li className="nav-item" style={{display:'inline-block'}}>

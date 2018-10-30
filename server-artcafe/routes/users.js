@@ -34,11 +34,8 @@ router.get('/:id',(req,res,next)=>{
       res.send(
         {
           email:user.email,
-          username:user.username,
           isArtist:user.isArtist,
           description:user.description,
-          pic_path:user.pic_path,
-          dataRegister:user.dataRegister
         }
       )
     });

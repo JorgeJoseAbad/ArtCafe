@@ -4,11 +4,19 @@ import axios from 'axios';
 export class Edituser extends Component{
   constructor(props){
     super(props);
-    this.state=({
+    this.initialState=({
       userId:this.props.userID,
-      userToedit:null
+      userToedit:{
+        isArtist:'',
+        description:'',
+        email:''
+      }
     })
+    this.state=this.initialState;
     this.getUserToEdit();
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   getUserToEdit=()=>{
@@ -27,6 +35,16 @@ export class Edituser extends Component{
       this.setState({
         selectedFile: selectedFile,
       })
+    }
+
+    handleChange = event => {
+      const target = event.target;
+      const value = target.type === 'checkbox' ? target.checked : target.value;
+      const name = target.name;
+        this.setState.userToedit({
+              [name] : value
+            
+        });
     }
 
   handleSubmit=(event)=>{
@@ -52,6 +70,9 @@ export class Edituser extends Component{
  }
 
 render(){
+
+ const{isArtist,description,email}=this.state.userToedit;
+
   return(
 
     <div>
@@ -74,6 +95,47 @@ render(){
           className="form-control"
         />
         <input type="submit" value="Submit" />
+      </form>
+
+      <form>
+
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={this.handleChange}
+            className="form-control"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="description">Description</label>
+          <textarea
+            type="textarea"
+            name="description"
+            value={description}
+            onChange={this.handleChange}
+            className="form-control"
+          required></textarea>
+        </div>
+        <div className="form-group">
+          <label htmlFor="isArtist">Are You Artist?</label>
+          <input
+            type="checkbox"
+            name="isArtist"
+            checked={isArtist}
+            onChange={this.handleChange}
+          />
+        </div>
+        <button
+          className="btn btn-primary"
+          type="submit"
+          onClick={this.handleSubmit}
+        >
+          Make changes
+        </button>
       </form>
 
     </div>

@@ -17,7 +17,6 @@ export class Artwork extends Component{
   }
 
   render(){
-    console.log("Artoworks: ",this.props)
     const newTo = {
         pathname: "/artworkdetail",
         param1: this.state.visitor,
