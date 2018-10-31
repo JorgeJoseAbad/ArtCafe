@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import axios from 'axios'
+import Background from '../logos/fondo.jpg';
 
 export class Signup extends Component{
   constructor(props){
@@ -46,7 +47,12 @@ export class Signup extends Component{
   render(){
     const {username,password,email,description,isArtist}=this.state
     return(
-      <div>
+      <div
+        style={{
+          backgroundImage:`url(${Background})`,
+          color:'black',
+        }}
+      >
         <div>
           {this.state.serverResponse}
         </div>

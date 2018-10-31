@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import axios from 'axios';
+import Background from '../logos/fondo.jpg';
 
 export class Edituser extends Component{
   constructor(props){
@@ -43,7 +44,7 @@ export class Edituser extends Component{
       const name = target.name;
         this.setState.userToedit({
               [name] : value
-            
+
         });
     }
 
@@ -75,7 +76,11 @@ render(){
 
   return(
 
-    <div>
+    <div
+    style={{
+      backgroundImage:`url(${Background})`,
+      color:'black',
+    }}>
       <div>Edit User alcanzado {this.props.userID}</div>
       <form onSubmit={this.handleSubmit} encType="multipart/form-data">
         <label

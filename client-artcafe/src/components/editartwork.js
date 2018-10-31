@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import axios from 'axios';
 import { withRouter } from 'react-router-dom'
+import Background from '../logos/fondo.jpg';
 
 export class Editartwork extends Component{
   constructor(props){
@@ -66,26 +67,17 @@ export class Editartwork extends Component{
 
     const {title,description,category,startBid}=this.state;
 
-    const Button = withRouter(({ history }) => (
-      <button
-        type='button'
-        onClick={() => { history.push('/gallery') }}
-      >
-        Click Me!
-      </button>
-    ))
-
-
     return(
 
       <div className="container" style={{
         border:'3px solid blue',
-        backgroundColor: '#b4b3b3',
+        color:'black',
+        backgroundImage:`url(${Background})`,
         marginTop:20
       }}>
         <div className="row">
           <div className="col-sm-offset-3 col-sm-6 centered-form">
-            <div>Load new Artwork by {this.props.id}</div>
+            <div>Edit artwork data; {this.props.id}</div>
             <form>
               <div className="form-group">
                 <label htmlFor="title">Title</label>
@@ -145,8 +137,8 @@ export class Editartwork extends Component{
                 </select>
               </div>
               <div className="form-group">
-                <button value={Button} onClick={this.handleSubmit}>
-                  Send New Artwork to Gallery
+                <button  onClick={this.handleSubmit}>
+                  Send corrected data artwork to gallery
                 </button>
 
               </div>

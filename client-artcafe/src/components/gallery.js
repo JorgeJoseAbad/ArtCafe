@@ -3,7 +3,9 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import {Newartwork} from './newartwork';
-import {Artwork} from './artwork'
+import {Artwork} from './artwork';
+import Background from '../logos/fondo.jpg';
+import logo from '../logos/logo.svg';
 
 export class Gallery extends Component {
   constructor(props){
@@ -37,16 +39,26 @@ export class Gallery extends Component {
            })
 
     return(
+      <div>
+        <header className="App-header"
+          style={{backgroundImage:`url(${Background})`,color:'black'}}>
+          <h1>YOUR COFEE FOR ARTIST AND ART LOVERS ALL ARROUND THE WORLD</h1>
+          <img src={logo} className="App-logo" alt="ArtCafe" />
+          <h2>Artist thrive here</h2>
+          <p>The place where you can buy the better artworks or
+          auction your creations</p>
+        </header>
 
-          <div className="page">
-            <pre>Hola {this.props.user} your id is {this.props.id}!!!!</pre>
-            <div className="container-fluid">
-              <div className="row">
-                {artworkList}
-              </div>
+        <div className="page">
+          <pre>Hola {this.props.user} your id is {this.props.id}!!!!</pre>
+          <div className="container-fluid">
+            <div className="row">
+              {artworkList}
             </div>
-            {toNewArtwork}
           </div>
+          {toNewArtwork}
+        </div>
+      </div>
     )}
 
 }

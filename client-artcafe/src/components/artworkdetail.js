@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import axios from 'axios';
 import {Editartwork} from './editartwork';
+import Background from '../logos/fondo.jpg';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 export class Artworkdetail extends Component{
@@ -82,7 +83,8 @@ export class Artworkdetail extends Component{
           <label htmlFor="pic_path">
             Upload a new photo for this artwork
           </label>
-          <input style={{maxWidth: 500}}
+          <input
+            style={{maxWidth: 500}}
             type="file"
             name="pic_path"
             id="pic_path"
@@ -144,10 +146,12 @@ export class Artworkdetail extends Component{
      </div>
 
    return(
+
       <div
         className="container artworkdetail-main"
         style={{
-          backgroundColor:'AliceBlue',
+          backgroundImage:`url(${Background})`,
+          color:'black',
           border: '5px solid hsla(155, 50%, 10%, 1)',
           margin: '0 auto',
           maxWidth:900,

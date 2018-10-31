@@ -82,9 +82,9 @@ class App extends Component {
               userLogged===''?
                 <ul className="navbar-nav">
                   <li className="nav-item" style={{display:'inline-block'}}>
-                  <Link to="/signup">Signup</Link></li>
+                    <Link to="/signup">Signup</Link></li>
                   <li className="nav-item" style={{display:'inline-block'}}>
-                  <Link to="/login">Login</Link></li>
+                    <Link to="/login">Login</Link></li>
                 </ul>
               :
               <ul className="navbar-nav">
@@ -104,14 +104,7 @@ class App extends Component {
 
           </div>
         </nav>
-        <header className="App-header"
-          style={{backgroundImage:`url(${Background})`,color:'black'}}>
-          <h1>YOUR COFEE FOR ARTIST AND ART LOVERS ALL ARROUND THE WORLD</h1>
-          <img src={logo} className="App-logo" alt="ArtCafe" />
-          <h2>Artist thrive here</h2>
-          <p>The place where you can buy the better artworks or
-          auction your creations</p>
-        </header>
+
         <MayRoutes />
 
       </div>
