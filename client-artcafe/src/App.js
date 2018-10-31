@@ -42,8 +42,10 @@ const MayRoutes = () => {
     <Route path="/login" key="r2" component={()=><Login
       getUserNameId={getUserNameId}/>} />,
     <Route path="/signup" key="r3" component={Signup} />,
-    <Route path="/logout" key="r4" component={()=><Logout user={userLogged}
+
+    <Route path="/logout" key="r4" render={(props)=><Logout {...props} user={userLogged}
       getUserNameId={getUserNameId}/>} />,
+
     <Route path="/artworkdetail" key="r5" component={Artworkdetail}/>,
     <Route path="/editartwork" key="r6" component={Editartwork}/>,
     <Route path="/edituser" key="r7" component={()=><Edituser
