@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import axios from 'axios';
+import { withRouter } from 'react-router-dom'
 
 export class Editartwork extends Component{
   constructor(props){
@@ -46,18 +47,35 @@ export class Editartwork extends Component{
     this.setState(this.initialState);
     event.preventDefault();
 
+
   }
 
   editGallery=(state)=>{
     axios.put(`http://localhost:3000/gallery/${this.state.artworkID}`,state)
-    .then((res)=>console.log(res.data))
+    .then((res)=>{
+      console.log(res.data);
+      this.props.history.push('/gallery');
+
+    })
     .catch(e=>console.log(e))
   }
 
 
+
   render(){
 
-    const {title,description,category,startBid}=this.state
+    const {title,description,category,startBid}=this.state;
+
+    const Button = withRouter(({ history }) => (
+      <button
+        type='button'
+        onClick={() => { history.push('/gallery') }}
+      >
+        Click Me!
+      </button>
+    ))
+
+
     return(
 
       <div className="container" style={{
@@ -127,9 +145,10 @@ export class Editartwork extends Component{
                 </select>
               </div>
               <div className="form-group">
-                <button onClick={this.handleSubmit}>
+                <button value={Button} onClick={this.handleSubmit}>
                   Send New Artwork to Gallery
                 </button>
+
               </div>
             </form>
           </div>
@@ -139,3 +158,6 @@ export class Editartwork extends Component{
     )
   }
 }
+
+
+// this also works with react-router-native
