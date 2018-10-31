@@ -35,11 +35,11 @@ const getUserNameId=(user,id,pick_path)=>{
 
 const MayRoutes = () => {
   return [
-    <Route exact path="/" key="r0" component={()=><Gallery title="Hola"
+    <Route exact path="/" key="r0" render={()=><Gallery title="Hola"
       user={userLogged} id={userLoggedId}/>} />,
-    <Route path="/gallery" key="r1" component={()=><Gallery title="Hola"
+    <Route path="/gallery" key="r1" render={()=><Gallery title="Hola"
       user={userLogged} id={userLoggedId}/>}/>,
-    <Route path="/login" key="r2" component={()=><Login
+    <Route path="/login" key="r2" render={()=><Login
       getUserNameId={getUserNameId}/>} />,
     <Route path="/signup" key="r3" component={Signup} />,
 
@@ -48,9 +48,9 @@ const MayRoutes = () => {
 
     <Route path="/artworkdetail" key="r5" component={Artworkdetail}/>,
     <Route path="/editartwork" key="r6" component={Editartwork}/>,
-    <Route path="/edituser" key="r7" component={()=><Edituser
+    <Route path="/edituser" key="r7" render={()=><Edituser
       userID={userLoggedId}/>}/>,
-    <Route path="/newartwork" key="r8" component={()=><Newartwork
+    <Route path="/newartwork" key="r8" render={()=><Newartwork
       id={userLoggedId}/>}/>
   ]
 };
