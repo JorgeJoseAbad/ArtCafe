@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
+// eslint-disable-next-line
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-//import axios from 'axios';
-import logo from './logos/logo.svg';
+
+
 import logoclaim from './logos/logo-claim.svg';
 import './App.css';
-import Background from './logos/fondo.jpg';
+
 //import ProvLogo from './logos/user_color.png'; //provisional
 
 import {Gallery} from './components/gallery.js';

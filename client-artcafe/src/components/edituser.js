@@ -44,7 +44,6 @@ export class Edituser extends Component{
     handleChange = event => {
       const target = event.target;
       const value = target.type === 'checkbox' ? target.checked : target.value;
-      const name = target.name;
         this.setState({
               [this.userToedit.name] : value
 

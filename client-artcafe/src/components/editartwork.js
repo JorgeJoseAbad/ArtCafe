@@ -1,6 +1,5 @@
 import React,{Component} from 'react'
 import axios from 'axios';
-import { withRouter } from 'react-router-dom'
 import Background from '../logos/fondo.jpg';
 
 export class Editartwork extends Component{

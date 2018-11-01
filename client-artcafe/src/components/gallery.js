@@ -1,8 +1,8 @@
 import React,{Component} from 'react'
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+// eslint-disable-next-line
+import { BrowserRouter as Route, Link } from 'react-router-dom';
 
-import {Newartwork} from './newartwork';
 import {Artwork} from './artwork';
 import Background from '../logos/fondo.jpg';
 import logo from '../logos/logo.svg';
@@ -29,7 +29,7 @@ export class Gallery extends Component {
   render(){
       let toNewArtwork;
       if (this.props.id&&(this.props.id!==''))
-        //toNewArtwork=<Newartwork id={this.props.id}/>
+
         toNewArtwork=<button><Link to="/newartwork">Load a new artwork!!</Link></button>
       else
         toNewArtwork=<div>You are no logged and can't load artwork</div>

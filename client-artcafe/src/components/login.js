@@ -33,6 +33,7 @@ export class Login extends Component{
       event.preventDefault();
   }
 
+
  loginPost=(state)=>{
     axios.post('http://localhost:3000/login',state)
     .then((res)=>{
@@ -43,12 +44,17 @@ export class Login extends Component{
         userId:res.data._id,
         userPic_path:res.data.pic_path
       })
-      this.props.getUserNameId(
-        this.state.userName,
-        this.state.userId,
-        this.state.userPic_path
-      );
-       this.props.history.push('/gallery');
+      if (res.data.message!=="The password is incorrect"
+            && res.data.message!=="The username doesn't exist"
+          ){
+        this.props.getUserNameId(
+          this.state.userName,
+          this.state.userId,
+          this.state.userPic_path
+        );
+         this.props.history.push('/gallery');
+      }
+
 
     })
     .catch(e=>console.log(e))
@@ -64,7 +70,13 @@ export class Login extends Component{
         }}
       >
 
-        <div>{this.state.serverResponse}</div>
+        <div className="error"
+          style={{
+            color:'hsla(0, 95%, 14%, 1)',
+            backgroundColor: 'hsla(191, 18%, 42%, 0.41)'
+          }}>
+          {this.state.serverResponse}
+        </div>
 
         <div className="container">
           <div className="row">

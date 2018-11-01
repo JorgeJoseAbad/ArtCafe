@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import axios from 'axios';
-import {Editartwork} from './editartwork';
 import Background from '../logos/fondo.jpg';
+// eslint-disable-next-line
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 export class Artworkdetail extends Component{
@@ -158,7 +158,6 @@ export class Artworkdetail extends Component{
           margin: '0 auto',
           minWidth:900,
           height:'fit-content',
-          color:'MidnightBlue',
           fontSize:24
         }}
       >

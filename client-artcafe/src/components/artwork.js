@@ -1,7 +1,5 @@
 import React,{Component} from 'react'
-import axios from 'axios';
-import {Artworkdetail} from './artworkdetail';
-
+// eslint-disable-next-line
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
