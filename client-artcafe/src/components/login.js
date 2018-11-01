@@ -33,7 +33,7 @@ export class Login extends Component{
       event.preventDefault();
   }
 
-  loginPost=(state)=>{
+ loginPost=(state)=>{
     axios.post('http://localhost:3000/login',state)
     .then((res)=>{
       console.log(res);
@@ -48,23 +48,11 @@ export class Login extends Component{
         this.state.userId,
         this.state.userPic_path
       );
+       this.props.history.push('/gallery');
 
     })
     .catch(e=>console.log(e))
   }
-
-
-handleLogout = ()=>{
-  axios.get('http://localhost:3000/logout')
-   .then((res)=>{
-     this.setState({
-       serverResponse:res.data.message,
-       userId:''
-     })
-     this.props.getUserNameId('','','');
-   })
-   .catch(e=>console.log(e))
-}
 
   render(){
     const {username,password}=this.state;
@@ -77,9 +65,6 @@ handleLogout = ()=>{
       >
 
         <div>{this.state.serverResponse}</div>
-        <div>
-          <button onClick={this.handleLogout}>Make Logout</button>
-        </div>
 
         <div className="container">
           <div className="row">

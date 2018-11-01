@@ -17,8 +17,8 @@ export class Logout extends Component{
 render(){
   return (
     <div>
-      {this.props.user}
-      <button onClick={this.handleLogout}>Make Logout</button>
+      <div>{this.props.user}, are you sure you want leave?</div>
+      <button onClick={this.handleLogout}>YES</button>
     </div>)
   }
 

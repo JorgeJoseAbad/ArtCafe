@@ -33,6 +33,7 @@ router.get('/:id',(req,res,next)=>{
       console.log(user)
       res.send(
         {
+          username:user.username,
           email:user.email,
           isArtist:user.isArtist,
           description:user.description,

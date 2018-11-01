@@ -45,10 +45,12 @@ router.put('/:id', (req, res) => {
 });
 
 
-/*Rpute provisional upload image*/
+/*Rpute  upload image*/
 router.post('/upload/:id', upload.single('artworkImage'), (req, res) => {
   console.log(req.body);
   console.log(req.params.id);
+
+  if (req.params.id=="undefined") return res.send("You are not logged")
 
   console.log(req.file)
   pic_path = "/uploads/" + req.file.filename;

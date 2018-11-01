@@ -8,11 +8,13 @@ export class Edituser extends Component{
     this.initialState=({
       userId:this.props.userID,
       userToedit:{
+        username:'',
         isArtist:'',
         description:'',
         email:''
       }
     })
+
     this.state=this.initialState;
     this.getUserToEdit();
 
@@ -25,6 +27,7 @@ export class Edituser extends Component{
     .then((res)=>{
        console.log(res)
       this.setState({userToedit:res.data});
+
 
     })
     .catch(e=>console.log(e))
@@ -42,8 +45,8 @@ export class Edituser extends Component{
       const target = event.target;
       const value = target.type === 'checkbox' ? target.checked : target.value;
       const name = target.name;
-        this.setState.userToedit({
-              [name] : value
+        this.setState({
+              [this.userToedit.name] : value
 
         });
     }
@@ -81,7 +84,7 @@ render(){
       backgroundImage:`url(${Background})`,
       color:'black',
     }}>
-      <div>Edit User alcanzado {this.props.userID}</div>
+      <div>User Name: {this.state.userToedit.username}</div>
       <form onSubmit={this.handleSubmit} encType="multipart/form-data">
         <label
           htmlFor="pic_path"
@@ -89,8 +92,14 @@ render(){
           Upload a new photo for this artwork
         </label>
         <input
+          style={{
+            width: '50%',
+            margin: '0 auto',
+          }}
+
           type="file"
           id="input"
+          name="pic_path"
           ref={this.fileInput}
           onChange={this.handleselectedFile}
         />
@@ -107,6 +116,10 @@ render(){
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
+            style={{
+              width: '50%',
+              margin: '0 auto',
+            }}
             type="email"
             name="email"
             value={email}
@@ -118,6 +131,10 @@ render(){
         <div className="form-group">
           <label htmlFor="description">Description</label>
           <textarea
+          style={{
+            width: '50%',
+            margin: '0 auto',
+          }}
             type="textarea"
             name="description"
             value={description}

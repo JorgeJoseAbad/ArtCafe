@@ -72,6 +72,7 @@ export class Artworkdetail extends Component{
 
    }
 
+
    const {pic_path}=this.state.artworkData;
 
    let options;
@@ -97,6 +98,7 @@ export class Artworkdetail extends Component{
             name="_id" id="upload-photo"
             className="form-control"
           />
+
           <input
              type="submit"
              value="Submit"
@@ -152,12 +154,12 @@ export class Artworkdetail extends Component{
         style={{
           backgroundImage:`url(${Background})`,
           color:'black',
-          border: '5px solid hsla(155, 50%, 10%, 1)',
+          border: '2px solid hsla(155, 50%, 10%, 1)',
           margin: '0 auto',
-          maxWidth:900,
+          minWidth:900,
           height:'fit-content',
           color:'MidnightBlue',
-          fontSize:30
+          fontSize:24
         }}
       >
         <div

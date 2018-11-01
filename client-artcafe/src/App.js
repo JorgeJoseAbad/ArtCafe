@@ -39,7 +39,7 @@ const MayRoutes = () => {
       user={userLogged} id={userLoggedId}/>} />,
     <Route path="/gallery" key="r1" render={()=><Gallery title="Hola"
       user={userLogged} id={userLoggedId}/>}/>,
-    <Route path="/login" key="r2" render={()=><Login
+    <Route path="/login" key="r2" render={(props)=><Login {...props}
       getUserNameId={getUserNameId}/>} />,
     <Route path="/signup" key="r3" component={Signup} />,
 
