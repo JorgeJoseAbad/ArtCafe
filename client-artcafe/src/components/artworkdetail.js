@@ -149,65 +149,73 @@ export class Artworkdetail extends Component{
 
    return(
 
-      <div
-        className="container artworkdetail-main"
-        style={{
-          backgroundImage:`url(${Background})`,
-          color:'black',
-          border: '2px solid hsla(155, 50%, 10%, 1)',
-          margin: '0 auto',
-          minWidth:900,
-          height:'fit-content',
-          fontSize:24
-        }}
-      >
-        <div
-          className="row artworkdetail-header"
-          style={{
-            backgroundColor:'rgba(103, 33, 33, 0.2)',
-          }}
-        >
-          <div className="col-md-2">{this.state.userVisitor}</div>
-          <div className="col-md-6">{this.state.artworkData.title}</div>
-          <div className="col-md-2">{this.state.artworkCreator}</div>
-          <div className="col-md-2">{this.state.artworkData.category}</div>
-        </div>
-        <div className="row">
-          <div
-            className="col-md-4 artworkdetail-img"
-            style={{
-                boxShadow: '6px 5px 5px black',
-                border: '1px solid black',
-                height: 'fit-content',
-                padding:0
-            }}
-          >
-            <img
-              alt="art"
-              style={{width:'inherit',height:'auto'}}
-              src={pic_path}
-            />
-          </div>
-          <div className="col-md-8">
-            <div
-              className="artworkdetail-description"
+    <div className="row">
+
+            <div className="col-sm-* artworkdetail-main"
               style={{
-                  margin:10,
-                  border:'1px solid blue',
-                  boxShadow: '2px 2px 2px 2px blue'
+                backgroundImage:`url(${Background})`,
+                color:'black',
+                border: '2px solid hsla(155, 50%, 10%, 1)',
+                margin: '0 auto',
+                height:'fit-content',
+                fontSize:24
               }}
             >
-              {this.state.artworkData.description}
+
+              <div
+                className="artworkdetail-header"
+                style={{
+                  backgroundColor:'rgba(103, 33, 33, 0.2)',
+                }}
+              >
+                <div className="row">
+                  <div className="col-sm-2">{this.state.userVisitor}</div>
+                  <div className="col-sm-6">{this.state.artworkData.title}</div>
+                  <div className="col-sm-2">{this.state.artworkCreator}</div>
+                  <div className="col-sm-2">{this.state.artworkData.category}</div>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-sm-4">
+                  <div className="artworkdetail-img"
+                    style={{
+                        boxShadow: '6px 5px 5px black',
+                        border: '1px solid black',
+                        width: 'inherit',
+                        padding:0
+                    }}>
+                    <img
+                      alt="art"
+                      style={{width:'inherit',height:'auto'}}
+                      src={pic_path}
+                    />
+                  </div>
+                </div>
+                <div className="col-sm-8">
+                  <div
+                    className="artworkdetail-description"
+                    style={{
+                        margin:10,
+                        border:'1px solid blue',
+                        boxShadow: '2px 2px 2px 2px blue'
+                    }}
+                  >
+                    {this.state.artworkData.description}
+                  </div>
+                  <div
+                    className="artworkdetail-options"
+                  >
+                    {options}
+                  </div>
+                </div>
+              </div>
             </div>
-            <div
-              className="artworkdetail-options"
-            >
-              {options}
-            </div>
-          </div>
-        </div>
-      </div>
-   )
+
+    </div>
+
+
+  )
  }
 
 

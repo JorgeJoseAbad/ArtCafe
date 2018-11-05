@@ -34,7 +34,7 @@ const getUserNameId=(user,id,pick_path)=>{
 }
 
 
-const MayRoutes = () => {
+const MyRoutes = () => {
   return [
     <Route exact path="/" key="r0" render={()=><Gallery title="Hola"
       user={userLogged} id={userLoggedId}/>} />,
@@ -106,7 +106,11 @@ class App extends Component {
           </div>
         </nav>
 
-        <MayRoutes />
+        <div className="container">
+
+              <MyRoutes />
+
+        </div>
 
       </div>
     );
