@@ -72,6 +72,13 @@ export class Artworkdetail extends Component{
 
    }
 
+   let artworkToBuy={
+     pathname:"/buy",
+     param1:this.state.artworkID,
+     param2:this.state.artworkData,
+     param3:this.state.userVisitor,
+   }
+
 
    const {pic_path}=this.state.artworkData;
 
@@ -116,7 +123,7 @@ export class Artworkdetail extends Component{
               to={newToEdit}
               style={{color:'black'}}
               >
-              Edit
+              EDIT
             </Link>
           </button>
         </div>
@@ -144,7 +151,13 @@ export class Artworkdetail extends Component{
    else options=
      <div>
        <b>This is a ganga {this.state.startBid}</b>
-       <button type="button" className="btn btn-secondary">Buy</button>
+       <Link to={artworkToBuy} type="button"
+       className="btn btn-secondary"
+        style={{
+          color:'black'
+        }}
+       > BUY IT!!!<
+       /Link>
      </div>
 
    return(

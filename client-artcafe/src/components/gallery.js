@@ -50,7 +50,20 @@ export class Gallery extends Component {
         </header>
 
         <div className="page">
-          <pre>Hola {this.props.user} your id is {this.props.id}!!!!</pre>
+          <div className="wellcome"
+            style={{
+              backgroundColor: 'grey',
+              marginTop:10,
+              marginBottom: 10,
+              fontSize: 22,
+              color:'white'
+            }}>
+            {(this.props.user&&this.props.user!=='')?
+              <b>Wellcome {this.props.user} there are all this artwork for you</b>
+              :
+              <b>Wellcome visitor! there are all this artwork for you</b>
+             }
+             </div>
           <div className="container-fluid">
             <div className="row">
               {artworkList}

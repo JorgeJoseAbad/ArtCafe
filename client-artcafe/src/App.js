@@ -19,6 +19,8 @@ import {Editartwork} from './components/editartwork.js';
 import {Edituser} from './components/edituser.js';
 import {Newartwork} from './components/newartwork.js';
 
+import {Buy} from './components/buy.js';
+
 
 
 let userLogged='';
@@ -30,6 +32,7 @@ const getUserNameId=(user,id,pick_path)=>{
   userLogged=user;
   userLoggedId=id;
   userLoggedLogo=pick_path;
+
   console.log(userLogged,userLoggedId,userLoggedLogo);
 }
 
@@ -52,14 +55,17 @@ const MyRoutes = () => {
     <Route path="/edituser" key="r7" render={()=><Edituser
       userID={userLoggedId}/>}/>,
     <Route path="/newartwork" key="r8" render={()=><Newartwork
-      id={userLoggedId}/>}/>
+      id={userLoggedId}/>}/>,
+    <Route path="/buy" key="r9" component={Buy}/>
   ]
 };
 
 
 class App extends Component {
 
+
   render() {
+
     return (
 
       <div className="App">
@@ -88,19 +94,20 @@ class App extends Component {
                     <Link to="/login">Login</Link></li>
                 </ul>
               :
-              <ul className="navbar-nav">
+              <ul className="navbar-nav" onToggle={this.handleChange}>
                 <li className="nav-item" style={{display:'inline-block'}}>
                   <Link to="/logout">Logout</Link>
                 </li>
                 <li className="nav-image-profile" style={{
                   display:'inline-block'
                 }}>
-                  <img src={this.userLoggedLogo} width="30" height="30" alt=""/>
+                  <img src={userLoggedLogo} width="30" height="30" alt=""/>
                 </li>
                 <li className="nav-item" style={{display:'inline-block'}}>
                   <Link to="/edituser">{userLogged}</Link>
                 </li>
               </ul>
+
             }
 
           </div>
