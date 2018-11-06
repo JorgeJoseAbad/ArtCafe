@@ -72,6 +72,12 @@ export class Artworkdetail extends Component{
 
    }
 
+   let toDelete={
+     pathname: "/delete",
+     param1: this.state.artworkID
+
+   }
+
    let artworkToBuy={
      pathname:"/buy",
      param1:this.state.artworkID,
@@ -133,8 +139,14 @@ export class Artworkdetail extends Component{
             type="button"
             className="btn btn-primary"
             style={{color:'black'}}
+
           >
+          <Link
+            to={toDelete}
+            style={{color:'black'}}
+            >
             DELETE
+          </Link>
           </button>
         </div>
 

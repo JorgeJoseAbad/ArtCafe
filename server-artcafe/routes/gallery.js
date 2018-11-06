@@ -111,12 +111,22 @@ router.get('/:id', (req, res, next) => {
   console.log("en router",req.params.id);
   Artwork
     .findById(id)
-
     .exec((err, artwork) => {
       res.send(artwork)
     });
 
 });
+
+/*new to delete*/
+router.delete('/:id',(req,res,next)=>{
+  let id=req.params.id;
+  console.log("id artwork to delete: ",id);
+  Artwork
+   .findOneAndDelete({ _id: id })
+   .exec((err,result)=>{
+     res.send(result)
+   })
+})
 
 
 

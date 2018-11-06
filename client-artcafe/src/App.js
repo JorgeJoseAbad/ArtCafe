@@ -22,6 +22,7 @@ import {Edituser} from './components/edituser.js';
 import {Newartwork} from './components/newartwork.js';
 
 import {Buy} from './components/buy.js';
+import {Delete} from './components/delete.js';
 
 
 
@@ -56,7 +57,8 @@ const MyRoutes = () => {
       userID={userLoggedId}/>}/>,
     <Route path="/newartwork" key="r8" render={(props)=><Newartwork
        {...props} id={userLoggedId} name={userLogged}/>}/>,
-    <Route path="/buy" key="r9" component={Buy}/>
+    <Route path="/buy" key="r9" component={Buy}/>,
+    <Route path="/delete" key="10" component={Delete}/>
   ]
 };
 
