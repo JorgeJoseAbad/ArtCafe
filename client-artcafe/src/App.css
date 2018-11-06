@@ -3,7 +3,10 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
+
+  animation-name: App-logo-translate;
+  animation-iteration-count: infinite;
+  animation-duration: 4s;
   height: 10vmin;
 }
 
@@ -32,4 +35,14 @@ li{
   to {
     transform: rotate(360deg);
   }
+}
+
+@keyframes App-logo-translate {
+  from {
+    transform: translateX(-50%);
+  }
+  to{
+    transform: translateX(50%);
+  }
+
 }
