@@ -9,6 +9,8 @@ import './App.css';
 
 //import ProvLogo from './logos/user_color.png'; //provisional
 
+import {Cover} from './components/cover.js';
+
 import {Gallery} from './components/gallery.js';
 import {Login} from './components/login.js';
 import {Signup} from './components/signup.js';
@@ -39,14 +41,13 @@ const getUserNameId=(user,id,pick_path)=>{
 
 const MyRoutes = () => {
   return [
-    <Route exact path="/" key="r0" render={()=><Gallery title="Hola"
+    <Route exact path="/" key="r0" render={()=><Cover title="Hola"
       user={userLogged} id={userLoggedId}/>} />,
-    <Route path="/gallery" key="r1" render={()=><Gallery title="Hola"
-      user={userLogged} id={userLoggedId}/>}/>,
+    <Route path="/gallery" key="r1" render={(props)=><Gallery title="Hola"
+      user={userLogged} id={userLoggedId} {...props}/>}/>,
     <Route path="/login" key="r2" render={(props)=><Login {...props}
       getUserNameId={getUserNameId}/>} />,
     <Route path="/signup" key="r3" component={Signup} />,
-
     <Route path="/logout" key="r4" render={(props)=><Logout {...props}
     user={userLogged} getUserNameId={getUserNameId}/>} />,
     <Route path="/artworkdetail" key="r5" component={Artworkdetail}/>,
@@ -81,7 +82,7 @@ class App extends Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
-              <li className="nav-item active"><Link to="/">Portada</Link></li>
+              <li className="nav-item active"><Link to="/">Cover page</Link></li>
               <li className="nav-item"><Link to="/gallery">Gallery</Link></li>
             </ul>
             {

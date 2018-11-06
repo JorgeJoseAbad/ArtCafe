@@ -17,16 +17,21 @@ export class Gallery extends Component {
     this.getGallery();
   }
 
-
    getGallery=()=>{
     axios.get('http://localhost:3000/gallery')
     .then((res)=>{
-      this.setState({arrayGallery:res.data});
+      if (this.props.location.param1===this.props.user){
+        const newRes=res.data.filter((item,index)=>item._creator.username===this.props.location.param1)
+        this.setState({arrayGallery:newRes})
+      } else {
+        this.setState({arrayGallery:res.data});
+      }
     })
     .catch(e=>console.log(e))
   }
 
   render(){
+
       let toNewArtwork;
       if (this.props.id&&(this.props.id!==''))
 
