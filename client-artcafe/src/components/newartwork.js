@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import axios from 'axios';
+import Background from '../logos/fondo.jpg';
 
 
 
@@ -10,6 +11,7 @@ export class Newartwork extends Component{
         title:'',
         description:'',
         category:'',
+        ownerName:this.props.name,
         _creator:this.props.id,
         startBid:''
     })
@@ -31,14 +33,15 @@ export class Newartwork extends Component{
 
   handleSubmit=(event)=>{
     this.postGallery(this.state)
-    this.setState(this.initialState);
     event.preventDefault();
-
   }
 
   postGallery=(state)=>{
     axios.post('http://localhost:3000/gallery',state)
-    .then((res)=>console.log(res.data))
+    .then((res)=>{
+      this.setState(this.initialState);
+      this.props.history.push('/gallery');
+    })
     .catch(e=>console.log(e))
   }
 
@@ -48,12 +51,13 @@ export class Newartwork extends Component{
     return(
 
         <div className="container" style={{
-          border:'2px solid red',
-          marginTop:20
+          border:'px solid black',
+          marginTop:20,
+          backgroundImage:`url(${Background})`,
         }}>
           <div className="row">
             <div className="col-sm-offset-3 col-sm-6 centered-form">
-              <div>Load new Artwork by {this.props.id}</div>
+              <div>Load new Artwork by {this.state.ownerName}</div>
               <form>
                 <div className="form-group">
                   <label htmlFor="title">Title</label>

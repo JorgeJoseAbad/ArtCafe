@@ -30,7 +30,11 @@ export class Gallery extends Component {
       let toNewArtwork;
       if (this.props.id&&(this.props.id!==''))
 
-        toNewArtwork=<button><Link to="/newartwork">Load a new artwork!!</Link></button>
+        toNewArtwork=<button>
+                        <Link style={{color:'black'}} to="/newartwork">
+                          Load a new artwork!!
+                        </Link>
+                      </button>
       else
         toNewArtwork=<div>You are no logged and can't load artwork</div>
 
@@ -59,7 +63,10 @@ export class Gallery extends Component {
               color:'white'
             }}>
             {(this.props.user&&this.props.user!=='')?
-              <b>Wellcome {this.props.user} there are all this artwork for you</b>
+              <div style={{fontSize: 16,paddingBottom: 5}}>
+                <b>Wellcome {this.props.user} there are all this artwork for you</b>
+                <div>And you can load a new artwork {toNewArtwork}</div>
+              </div>
               :
               <b>Wellcome visitor! there are all this artwork for you</b>
              }
@@ -69,7 +76,7 @@ export class Gallery extends Component {
               {artworkList}
             </div>
           </div>
-          {toNewArtwork}
+
         </div>
       </div>
     )}

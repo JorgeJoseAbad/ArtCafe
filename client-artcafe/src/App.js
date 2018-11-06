@@ -47,15 +47,14 @@ const MyRoutes = () => {
       getUserNameId={getUserNameId}/>} />,
     <Route path="/signup" key="r3" component={Signup} />,
 
-    <Route path="/logout" key="r4" render={(props)=><Logout {...props} user={userLogged}
-      getUserNameId={getUserNameId}/>} />,
-
+    <Route path="/logout" key="r4" render={(props)=><Logout {...props}
+    user={userLogged} getUserNameId={getUserNameId}/>} />,
     <Route path="/artworkdetail" key="r5" component={Artworkdetail}/>,
     <Route path="/editartwork" key="r6" component={Editartwork}/>,
     <Route path="/edituser" key="r7" render={()=><Edituser
       userID={userLoggedId}/>}/>,
-    <Route path="/newartwork" key="r8" render={()=><Newartwork
-      id={userLoggedId}/>}/>,
+    <Route path="/newartwork" key="r8" render={(props)=><Newartwork
+       {...props} id={userLoggedId} name={userLogged}/>}/>,
     <Route path="/buy" key="r9" component={Buy}/>
   ]
 };

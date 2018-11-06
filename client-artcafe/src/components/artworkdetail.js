@@ -164,14 +164,15 @@ export class Artworkdetail extends Component{
 
     <div className="row">
 
-            <div className="col-sm-* artworkdetail-main"
+            <div className="col-sm-12 artworkdetail-main"
               style={{
                 backgroundImage:`url(${Background})`,
                 color:'black',
                 border: '2px solid hsla(155, 50%, 10%, 1)',
                 margin: '0 auto',
                 height:'fit-content',
-                fontSize:24
+                fontSize:24,
+                maxWidth: '90%',
               }}
             >
 
