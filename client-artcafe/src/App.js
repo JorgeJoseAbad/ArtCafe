@@ -25,46 +25,49 @@ import {Buy} from './components/buy.js';
 import {Delete} from './components/delete.js';
 
 
+class App extends Component {
+constructor(props){
+  super(props);
+  this.state=({
+    userLogged:'',
+    userLoggedId:'',
+    userLoggedLogo:'',
+  })
 
-let userLogged='';
-let userLoggedId=''
-let userLoggedLogo=''
-
-const getUserNameId=(user,id,pick_path)=>{
-  console.log("this is a prueba",user,id,pick_path);
-  userLogged=user;
-  userLoggedId=id;
-  userLoggedLogo=pick_path;
-
-  console.log(userLogged,userLoggedId,userLoggedLogo);
+  this.getUserNameId=this.getUserNameId.bind(this);
+  this.MyRoutes=this.MyRoutes.bind(this);
 }
 
+  MyRoutes = () => {
+    return [
+      <Route exact path="/" key="r0" render={()=><Cover title="Hola"
+        user={this.state.userLogged} id={this.state.userLoggedId}/>} />,
+      <Route path="/gallery" key="r1" render={(props)=><Gallery title="Hola"
+        user={this.state.userLogged} id={this.state.userLoggedId} {...props}/>}/>,
+      <Route path="/login" key="r2" render={(props)=><Login {...props}
+        getUserNameId={this.getUserNameId}/>} />,
+      <Route path="/signup" key="r3" component={Signup} />,
+      <Route path="/logout" key="r4" render={(props)=><Logout {...props}
+      user={this.state.userLogged} getUserNameId={this.getUserNameId}/>} />,
+      <Route path="/artworkdetail" key="r5" component={Artworkdetail}/>,
+      <Route path="/editartwork" key="r6" component={Editartwork}/>,
+      <Route path="/edituser" key="r7" render={()=><Edituser
+        userID={this.state.userLoggedId}/>}/>,
+      <Route path="/newartwork" key="r8" render={(props)=><Newartwork
+         {...props} id={this.state.userLoggedId} name={this.state.userLogged}/>}/>,
+      <Route path="/buy" key="r9" component={Buy}/>,
+      <Route path="/delete" key="10" component={Delete}/>
+    ]
+  };
 
-const MyRoutes = () => {
-  return [
-    <Route exact path="/" key="r0" render={()=><Cover title="Hola"
-      user={userLogged} id={userLoggedId}/>} />,
-    <Route path="/gallery" key="r1" render={(props)=><Gallery title="Hola"
-      user={userLogged} id={userLoggedId} {...props}/>}/>,
-    <Route path="/login" key="r2" render={(props)=><Login {...props}
-      getUserNameId={getUserNameId}/>} />,
-    <Route path="/signup" key="r3" component={Signup} />,
-    <Route path="/logout" key="r4" render={(props)=><Logout {...props}
-    user={userLogged} getUserNameId={getUserNameId}/>} />,
-    <Route path="/artworkdetail" key="r5" component={Artworkdetail}/>,
-    <Route path="/editartwork" key="r6" component={Editartwork}/>,
-    <Route path="/edituser" key="r7" render={()=><Edituser
-      userID={userLoggedId}/>}/>,
-    <Route path="/newartwork" key="r8" render={(props)=><Newartwork
-       {...props} id={userLoggedId} name={userLogged}/>}/>,
-    <Route path="/buy" key="r9" component={Buy}/>,
-    <Route path="/delete" key="10" component={Delete}/>
-  ]
-};
+  getUserNameId=(user,id,pick_path)=>{
+    console.log("this is a prueba",user,id,pick_path);
+    this.setState({userLogged:user});
+    this.setState({userLoggedId:id});
+    this.setState({userLoggedLogo:pick_path});
 
-
-class App extends Component {
-
+    console.log(this.state.userLogged,this.state.userLoggedId,this.state.userLoggedLogo);
+  }
 
   render() {
 
@@ -88,7 +91,7 @@ class App extends Component {
               <li className="nav-item"><Link to="/gallery">Gallery</Link></li>
             </ul>
             {
-              userLogged===''?
+              this.state.userLogged===''?
                 <ul className="navbar-nav">
                   <li className="nav-item" style={{display:'inline-block'}}>
                     <Link to="/signup">Signup</Link></li>
@@ -103,10 +106,10 @@ class App extends Component {
                 <li className="nav-image-profile" style={{
                   display:'inline-block'
                 }}>
-                  <img src={userLoggedLogo} width="30" height="30" alt=""/>
+                  <img src={this.state.userLoggedLogo} width="30" height="30" alt=""/>
                 </li>
                 <li className="nav-item" style={{display:'inline-block'}}>
-                  <Link to="/edituser">{userLogged}</Link>
+                  <Link to="/edituser">{this.state.userLogged}</Link>
                 </li>
               </ul>
 
@@ -117,7 +120,7 @@ class App extends Component {
 
         <div className="container-fluid">
 
-              <MyRoutes />
+              <this.MyRoutes />
 
         </div>
 
