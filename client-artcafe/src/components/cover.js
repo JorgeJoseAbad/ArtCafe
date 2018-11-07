@@ -1,9 +1,9 @@
 import React,{Component} from 'react'
-import axios from 'axios';
+
 // eslint-disable-next-line
 import { BrowserRouter as Route, Link } from 'react-router-dom';
 
-import {Artwork} from './artwork';
+
 import Background from '../logos/fondo.jpg';
 import logo from '../logos/logo.svg';
 
