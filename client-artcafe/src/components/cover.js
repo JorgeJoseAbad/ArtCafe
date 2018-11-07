@@ -36,23 +36,52 @@ render(){
         <p>The place where you can buy the better artworks or
         auction your creations</p>
       </header>
-      <div className="cover-main">
-        Place to put variants
+
+      <div className="cover-main"
+        style={{
+          fontSize:26,
+          backgroundColor: '#8da7f3b8',
+          maxWidth: '90%',
+          margin: '0 auto',
+          padding: 20
+        }}>
+        <pre>Some options you have</pre>
         <ul>
-          <li>List artorks<button type="button"><Link to="/gallery">
+          <li><b>List artorks</b><button type="button"><Link to="/gallery">
                                   Go to gallery</Link></button></li>
           {this.props.user!==''?
-              <li>List my Artwork <button type="button">
-                <Link to={userArtwork}>See your artork</Link>
-              </button></li>
+              <li><b>List my Artwork</b>
+                <button type="button">
+                  <Link to={userArtwork}>See your artork</Link>
+                </button>
+              </li>
               :
-              <li>Made login <button type="button"><Link to="/login">
-                                  Login</Link></button>
+              <li><b>Made login</b>
+                <button type="button">
+                    <Link to="/login">Login</Link>
+                </button>
               </li>
           }
-          <li>List artwork by type <button type="button"></button></li>
+
         </ul>
       </div>
+
+      <div className="intro-cover"
+      style={{
+        fontWeight: '100',
+        fontSize: 26,
+        color: 'navy',
+        backgroundColor: '#aaaaaa',
+        maxWidth: '90%',
+        margin: '0 auto'
+      }}>
+
+          This app, ArtCafe, is made with: React, React-route, Bootstrap;
+          in the front side. and Node.js, Express, Mongoose and MongoDB,
+          in the back side
+
+      </div>
+
     </div>
 
   )
