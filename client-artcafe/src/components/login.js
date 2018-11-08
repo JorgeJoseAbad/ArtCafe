@@ -52,7 +52,7 @@ export class Login extends Component{
           this.state.userId,
           this.state.userPic_path
         );
-         this.props.history.push('/gallery');
+         this.props.history.push('/');
       }
 
 

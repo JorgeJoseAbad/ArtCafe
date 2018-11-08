@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
-import logoclaim from './logos/logo-claim.svg';
+import logoclaim from './logos/ArtCafe-logo-prov.svg';
 import './App.css';
 
 //import ProvLogo from './logos/user_color.png'; //provisional
