@@ -69,9 +69,10 @@ export class Editartwork extends Component{
     return(
 
       <div className="container" style={{
-        border:'3px solid blue',
+        border:'1px solid black',
         color:'black',
         backgroundImage:`url(${Background})`,
+        boxShadow: '10px 10px 10px 10px black',
         marginTop:20
       }}>
         <div className="row">

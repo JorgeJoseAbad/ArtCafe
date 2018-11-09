@@ -162,7 +162,7 @@ export class Artworkdetail extends Component{
 
    else options=
      <div>
-       <b>This is a ganga {this.state.startBid}</b>
+       <b>This is a ganga at {this.state.artworkData.startBid} €</b>
        <Link to={artworkToBuy} type="button"
        className="btn btn-secondary"
         style={{
@@ -181,6 +181,7 @@ export class Artworkdetail extends Component{
                 backgroundImage:`url(${Background})`,
                 color:'black',
                 border: '2px solid hsla(155, 50%, 10%, 1)',
+                boxShadow: '2px 2px 4px 1px black',
                 margin: '0 auto',
                 height:'fit-content',
                 fontSize:24,
@@ -192,13 +193,15 @@ export class Artworkdetail extends Component{
                 className="artworkdetail-header"
                 style={{
                   backgroundColor:'rgba(103, 33, 33, 0.2)',
+                  fontSize: 16,
+                  textAlign: 'left',
                 }}
               >
                 <div className="row">
-                  <div className="col-sm-2">{this.state.userVisitor}</div>
-                  <div className="col-sm-6">{this.state.artworkData.title}</div>
-                  <div className="col-sm-2">{this.state.artworkCreator}</div>
-                  <div className="col-sm-2">{this.state.artworkData.category}</div>
+                  <div className="col-sm-2">User: {this.state.userVisitor}</div>
+                  <div className="col-sm-4">Art title: {this.state.artworkData.title}</div>
+                  <div className="col-sm-3">Art owner: {this.state.artworkCreator}</div>
+                  <div className="col-sm-3">Category: {this.state.artworkData.category}</div>
                 </div>
               </div>
 
@@ -223,8 +226,8 @@ export class Artworkdetail extends Component{
                     className="artworkdetail-description"
                     style={{
                         margin:10,
-                        border:'1px solid blue',
-                        boxShadow: '2px 2px 2px 2px blue'
+                        border:'1px solid black',
+                        boxShadow: '2px 2px 4px 1px black'
                     }}
                   >
                     {this.state.artworkData.description}
