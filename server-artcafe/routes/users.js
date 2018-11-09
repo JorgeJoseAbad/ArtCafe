@@ -52,7 +52,7 @@ router.post('/upload/:id',upload.single('avatar'),((req,res,next)=>{
     if (err) {
       return next(err);
     }
-    return res.send("exito en la carga de avatar");
+    return res.send("Success in the avatar loading");
   });
 }))
 

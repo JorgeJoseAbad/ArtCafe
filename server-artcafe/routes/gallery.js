@@ -52,7 +52,7 @@ router.post('/upload/:id', upload.single('artworkImage'), (req, res) => {
     if (err) {
       return next(err);
     }
-    return res.send("exito en la carga de imagen");
+    return res.send("Success in loading image for artwork");
   });
 
 });
