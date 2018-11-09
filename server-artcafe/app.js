@@ -22,7 +22,7 @@ const galleryRouter = require('./routes/gallery');
 
 
 mongoose
-  .connect('mongodb://localhost/artcafe', {useNewUrlParser: true})
+  .connect(process.env.REACT_APP_MONGODB_URI, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })

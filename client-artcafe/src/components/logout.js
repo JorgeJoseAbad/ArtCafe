@@ -9,7 +9,7 @@ export class Logout extends Component{
     axios.get('http://localhost:3000/logout')
      .then((res)=>{
          this.props.getUserNameId('','','');
-         this.props.history.push('/gallery');
+         this.props.history.push('/');
      })
      .catch(e=>console.log(e))
   }
