@@ -21,7 +21,6 @@ export class Editartwork extends Component{
   getArtworkToEdit=()=>{
     axios.get(`http://localhost:3000/gallery/${this.state.artworkID}`)
     .then((res)=>{
-      console.log(res);
       this.setState({
         title:res.data.title,
         description:res.data.description,
@@ -53,7 +52,6 @@ export class Editartwork extends Component{
   editGallery=(state)=>{
     axios.put(`http://localhost:3000/gallery/${this.state.artworkID}`,state)
     .then((res)=>{
-      console.log(res.data);
       this.props.history.push('/gallery');
 
     })

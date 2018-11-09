@@ -20,8 +20,6 @@ const upload = multer({
 
 /*Rpute provisional to edit artwork*/
 router.put('/:id', (req, res) => {
-  console.log(req.body);
-  console.log(req.params.id);
 
   const editedArtwork={
     artworkID: req.body.artworkID,
@@ -34,10 +32,8 @@ router.put('/:id', (req, res) => {
 
   Artwork.findByIdAndUpdate(req.params.id, editedArtwork,(err,artwork) => {
     if (err) {
-      console.log(err)
       return next(err);
     } else {
-      console.log("exito!!!!!");
       return res.send(artwork);
     }
   });
@@ -47,12 +43,9 @@ router.put('/:id', (req, res) => {
 
 /*Rpute  upload image*/
 router.post('/upload/:id', upload.single('artworkImage'), (req, res) => {
-  console.log(req.body);
-  console.log(req.params.id);
 
   if (req.params.id=="undefined") return res.send("You are not logged")
 
-  console.log(req.file)
   pic_path = "/uploads/" + req.file.filename;
 
   Artwork.findByIdAndUpdate(req.params.id, {pic_path}, (err, image) => {
@@ -80,7 +73,6 @@ router.get('/', (req, res, next) => {
 /*OK made post of artwork on BBDD*/
 router.post('/', (req, res, next) => {
 
-    console.log(req.body);
   const newArtwork = new Artwork({
     title: req.body.title,
     startBid: req.body.startBid,
@@ -92,14 +84,9 @@ router.post('/', (req, res, next) => {
     // pic_name: req.body.pic_name
   });
 
-debugger
-  console.log(newArtwork)
-
   newArtwork.save((err, artwork) => {
     if (err) {
-      console.log(err)
     } else {
-      console.log("exito!!!!!");
       res.send(artwork);
     }
   });
@@ -108,7 +95,6 @@ debugger
 /*NEwww */
 router.get('/:id', (req, res, next) => {
   let id=req.params.id;
-  console.log("en router",req.params.id);
   Artwork
     .findById(id)
     .exec((err, artwork) => {
@@ -120,7 +106,6 @@ router.get('/:id', (req, res, next) => {
 /*new to delete*/
 router.delete('/:id',(req,res,next)=>{
   let id=req.params.id;
-  console.log("id artwork to delete: ",id);
   Artwork
    .findOneAndDelete({ _id: id })
    .exec((err,result)=>{

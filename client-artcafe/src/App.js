@@ -43,7 +43,8 @@ constructor(props){
       <Route exact path="/" key="r0" render={()=><Cover title="Hola"
         user={this.state.userLogged} id={this.state.userLoggedId}/>} />,
       <Route path="/gallery" key="r1" render={(props)=><Gallery title="Hola"
-        user={this.state.userLogged} id={this.state.userLoggedId} {...props}/>}/>,
+        user={this.state.userLogged} id={this.state.userLoggedId} {...props}
+        />}/>,
       <Route path="/login" key="r2" render={(props)=><Login {...props}
         getUserNameId={this.getUserNameId}/>} />,
       <Route path="/signup" key="r3" component={Signup} />,
@@ -54,19 +55,18 @@ constructor(props){
       <Route path="/edituser" key="r7" render={()=><Edituser
         userID={this.state.userLoggedId}/>}/>,
       <Route path="/newartwork" key="r8" render={(props)=><Newartwork
-         {...props} id={this.state.userLoggedId} name={this.state.userLogged}/>}/>,
+         {...props} id={this.state.userLoggedId} name={this.state.userLogged}
+         />}/>,
       <Route path="/buy" key="r9" component={Buy}/>,
       <Route path="/delete" key="10" component={Delete}/>
     ]
   };
 
   getUserNameId=(user,id,pick_path)=>{
-    console.log("this is a prueba",user,id,pick_path);
     this.setState({userLogged:user});
     this.setState({userLoggedId:id});
     this.setState({userLoggedLogo:pick_path});
 
-    console.log(this.state.userLogged,this.state.userLoggedId,this.state.userLoggedLogo);
   }
 
   render() {
@@ -106,7 +106,8 @@ constructor(props){
                 <li className="nav-image-profile" style={{
                   display:'inline-block'
                 }}>
-                  <img src={this.state.userLoggedLogo} width="40" height="40" alt=""/>
+                  <img src={this.state.userLoggedLogo} width="40" height="40"
+                  alt=""/>
                 </li>
                 <li className="nav-item" style={{display:'inline-block'}}>
                   <Link to="/edituser">{this.state.userLogged}</Link>

@@ -41,8 +41,6 @@ export class Artworkdetail extends Component{
     }
 
   handleSubmit = event =>{
-    console.log(event)
-    console.log(this.fileInput.current.files[0]);
     event.preventDefault();
     const data = new FormData()
     data.append('artworkImage', this.state.selectedFile)
@@ -55,7 +53,6 @@ export class Artworkdetail extends Component{
     axios.post(`http://localhost:3000/gallery/upload/${this.state.artworkID}`
       ,data,config)
     .then((res)=>{
-      console.log(res)
       this.setState({result:res.data})
     })
     .catch(

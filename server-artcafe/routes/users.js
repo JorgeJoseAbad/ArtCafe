@@ -25,12 +25,10 @@ router.get('/', function(req, res, next) {
 
 /*GET single user*/
 router.get('/:id',(req,res,next)=>{
-  console.log("llegado a get",req.params.id);
   let id=req.params.id;
   User
     .findById(id)
     .exec((err, user) => {
-      console.log(user)
       res.send(
         {
           username:user.username,
@@ -45,10 +43,7 @@ router.get('/:id',(req,res,next)=>{
 
 /*New route to upload a file image for avatar*/
 router.post('/upload/:id',upload.single('avatar'),((req,res,next)=>{
-  console.log(req.body);
-  console.log(req.params.id);
 
-  console.log(req.file)
   pic_path = "/uploads/" + req.file.filename;
 
   User.findByIdAndUpdate(req.params.id, {
@@ -63,7 +58,6 @@ router.post('/upload/:id',upload.single('avatar'),((req,res,next)=>{
 
 /* POST users listing with params. this is a test OK*/
 router.post('/:id',((req,res,next)=>{
-    console.log(req.params);
     res.send(req.body);
   })
 )

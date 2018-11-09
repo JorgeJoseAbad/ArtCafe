@@ -10,7 +10,6 @@ import axios from 'axios';
     }
 
     const deleteArtwork=(id)=>{
-      console.log(id);
       axios.delete(`http://localhost:3000/gallery/${id}`)
       .then((res)=>{console.log(res)}
       )

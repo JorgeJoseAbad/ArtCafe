@@ -25,7 +25,6 @@ export class Edituser extends Component{
   getUserToEdit=()=>{
     axios.get(`http://localhost:3000/users/${this.state.userId}`)
     .then((res)=>{
-       console.log(res)
       this.setState({userToedit:res.data});
 
 
@@ -34,7 +33,6 @@ export class Edituser extends Component{
   }
 
   handleselectedFile = event => {
-    console.log(event);
       let selectedFile = document.getElementById('input').files[0];
       this.setState({
         selectedFile: selectedFile,
@@ -51,7 +49,6 @@ export class Edituser extends Component{
     }
 
   handleSubmit=(event)=>{
-    console.log(event)
     event.preventDefault();
     const data = new FormData()
     data.append('avatar', this.state.selectedFile)

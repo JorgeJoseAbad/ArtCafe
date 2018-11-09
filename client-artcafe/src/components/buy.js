@@ -12,9 +12,7 @@ import axios from 'axios';
   const getArtwork=()=>{
     axios.get(`http://localhost:3000/gallery/${props.location.param1}`)
     .then((res)=>{
-      console.log(res);
         artWorkPrice=res.data.startBid;
-        console.log(artWorkPrice);
 
     })
     .catch(e=>console.log(e))

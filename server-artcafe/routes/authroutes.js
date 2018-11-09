@@ -11,7 +11,6 @@ const bcryptSalt = 10;
 
 
 authRoutes.get("/logout", (req, res, next) => {
-  console.log("llamada a logout");
   req.session.destroy((err) => {
     // cannot access session here
     //res.redirect("/login");
@@ -91,7 +90,6 @@ authRoutes.post("/login", (req, res, next) => {
       if (bcrypt.compareSync(password, user.password)) {
         // Save the login in the session!
         req.session.currentUser = user;
-        console.log(user);
         res.send({message: "you are logged as: "+req.session.currentUser.username,
           username:req.session.currentUser.username,
           _id:req.session.currentUser._id,
