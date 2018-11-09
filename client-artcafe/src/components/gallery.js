@@ -50,7 +50,14 @@ export class Gallery extends Component {
     return(
       <div>
         <header className="App-header"
-          style={{backgroundImage:`url(${Background})`,color:'black'}}>
+          style={{
+            backgroundImage:`url(${Background})`,
+            color:'black',
+            fontFamily: 'Georgia',
+            fontStyle: 'italic',
+            fontWeight: 'bold',
+
+          }}>
           <h1>Your coffee for artist and art lovers all around the world</h1>
           <img src={logo} style={{width: 300,height: 200}} className="App-logo" alt="ArtCoffee" />
           <h2>Artist thrive here</h2>
