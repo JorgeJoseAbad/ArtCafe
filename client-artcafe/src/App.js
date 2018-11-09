@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
-import logoclaim from './logos/ArtCafe-logo-prov.svg';
+import logoclaim from './logos/ArtCoffee-logo.png';
 import './App.css';
 
 //import ProvLogo from './logos/user_color.png'; //provisional
@@ -106,7 +106,7 @@ constructor(props){
                 <li className="nav-image-profile" style={{
                   display:'inline-block'
                 }}>
-                  <img src={this.state.userLoggedLogo} width="30" height="30" alt=""/>
+                  <img src={this.state.userLoggedLogo} width="40" height="40" alt=""/>
                 </li>
                 <li className="nav-item" style={{display:'inline-block'}}>
                   <Link to="/edituser">{this.state.userLogged}</Link>

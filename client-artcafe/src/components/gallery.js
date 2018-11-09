@@ -5,7 +5,7 @@ import { BrowserRouter as Route, Link } from 'react-router-dom';
 
 import {Artwork} from './artwork';
 import Background from '../logos/fondo.jpg';
-import logo from '../logos/logo.svg';
+import logo from '../logos/ArtCoffee-text.png';
 
 export class Gallery extends Component {
   constructor(props){
@@ -51,8 +51,8 @@ export class Gallery extends Component {
       <div>
         <header className="App-header"
           style={{backgroundImage:`url(${Background})`,color:'black'}}>
-          <h1>YOUR COFEE FOR ARTIST AND ART LOVERS ALL ARROUND THE WORLD</h1>
-          <img src={logo} className="App-logo" alt="ArtCafe" />
+          <h1>Your coffee for artist and art lovers all around the world</h1>
+          <img src={logo} style={{width: 300,height: 200}} className="App-logo" alt="ArtCoffee" />
           <h2>Artist thrive here</h2>
           <p>The place where you can buy the better artworks or
           auction your creations</p>
