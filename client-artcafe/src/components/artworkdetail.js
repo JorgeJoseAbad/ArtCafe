@@ -25,7 +25,7 @@ export class Artworkdetail extends Component{
   }
 
   getArtwork=()=>{
-    axios.get(`http://localhost:3000/gallery/${this.state.artworkID}`)
+    axios.get(`https://localhost:3000/gallery/${this.state.artworkID}`)
     .then((res)=>{
       this.setState({artworkData:res.data});
 
@@ -50,7 +50,7 @@ export class Artworkdetail extends Component{
         }
     }
 
-    axios.post(`http://localhost:3000/gallery/upload/${this.state.artworkID}`
+    axios.post(`https://localhost:3000/gallery/upload/${this.state.artworkID}`
       ,data,config)
     .then((res)=>{
       this.setState({result:res.data})

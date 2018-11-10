@@ -37,7 +37,7 @@ export class Newartwork extends Component{
   }
 
   postGallery=(state)=>{
-    axios.post('http://localhost:3000/gallery',state)
+    axios.post('https://localhost:3000/gallery',state)
     .then((res)=>{
       this.setState(this.initialState);
       this.props.history.push('/gallery');

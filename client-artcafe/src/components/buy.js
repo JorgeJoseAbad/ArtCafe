@@ -10,7 +10,7 @@ import axios from 'axios';
   let artWorkPrice=props.location.param2.startBid;
 
   const getArtwork=()=>{
-    axios.get(`http://localhost:3000/gallery/${props.location.param1}`)
+    axios.get(`https://localhost:3000/gallery/${props.location.param1}`)
     .then((res)=>{
         artWorkPrice=res.data.startBid;
 
