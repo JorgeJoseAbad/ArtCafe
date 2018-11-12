@@ -18,7 +18,7 @@ export class Gallery extends Component {
   }
 
    getGallery=()=>{
-    axios.get('https://localhost:3000/gallery')
+    axios.get('http://localhost:3000/gallery')
     .then((res)=>{
       if (this.props.location.param1===this.props.user){
         const newRes=res.data.filter((item,index)=>item._creator.username===this.props.location.param1)

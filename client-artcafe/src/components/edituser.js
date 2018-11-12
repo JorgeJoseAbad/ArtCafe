@@ -23,7 +23,7 @@ export class Edituser extends Component{
   }
 
   getUserToEdit=()=>{
-    axios.get(`https://localhost:3000/users/${this.state.userId}`)
+    axios.get(`http://localhost:3000/users/${this.state.userId}`)
     .then((res)=>{
       this.setState({userToedit:res.data});
 
@@ -59,7 +59,7 @@ export class Edituser extends Component{
     }
 
     axios.post(
-      `https://localhost:3000/users/upload/${this.state.userId}`
+      `http://localhost:3000/users/upload/${this.state.userId}`
       ,data,config
     )
     .then((res)=>{

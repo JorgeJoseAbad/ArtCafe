@@ -35,7 +35,7 @@ export class Signup extends Component{
   }
 
   sendSignup=(state)=>{
-    axios.post('https://localhost:3000/signup',state)
+    axios.post('http://localhost:3000/signup',state)
     .then((res)=>{
       this.setState({
         serverResponse:res.data.message

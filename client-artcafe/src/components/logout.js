@@ -6,7 +6,7 @@ import Background from '../logos/fondo.jpg';
 export class Logout extends Component{
 
   handleLogout = ()=>{
-    axios.get('https://localhost:3000/logout')
+    axios.get('http://localhost:3000/logout')
      .then((res)=>{
          this.props.getUserNameId('','','');
          this.props.history.push('/');
