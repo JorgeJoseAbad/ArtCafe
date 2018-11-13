@@ -62,7 +62,7 @@ export class Edituser extends Component{
     }
 
     axios.post(
-      `http://localhost:3000/users/upload/${this.state.userId}`
+      `${apiUrl}/users/upload/${this.state.userId}`
       ,data,config
     )
     .then((res)=>{
@@ -78,7 +78,7 @@ export class Edituser extends Component{
    event.preventDefault();
    const data=this.state.userToedit;
    axios.put(
-     `http://localhost:3000/users/${this.state.userId}`
+     `${apiUrl}/users/${this.state.userId}`
      ,data
    )
    .then((res)=>{
