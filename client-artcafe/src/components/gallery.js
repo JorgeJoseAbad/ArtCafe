@@ -7,6 +7,11 @@ import {Artwork} from './artwork';
 import Background from '../logos/fondo.jpg';
 import logo from '../logos/ArtCoffee-text.png';
 
+const apiUrl = process.env.NODE_ENV === 'production' ?
+process.env.REACT_APP_PROD_API_URL
+:
+process.env.REACT_APP_DEV_API_URL;
+
 export class Gallery extends Component {
   constructor(props){
     super(props);
@@ -18,7 +23,7 @@ export class Gallery extends Component {
   }
 
    getGallery=()=>{
-    axios.get('http://localhost:3000/gallery')
+    axios.get(`${apiUrl}/gallery`)
     .then((res)=>{
       if (this.props.location.param1===this.props.user){
         const newRes=res.data.filter((item,index)=>item._creator.username===this.props.location.param1)

@@ -2,6 +2,11 @@ import React,{Component} from 'react'
 import axios from 'axios';
 import Background from '../logos/fondo.jpg';
 
+const apiUrl = process.env.NODE_ENV === 'production' ?
+process.env.REACT_APP_PROD_API_URL
+:
+process.env.REACT_APP_DEV_API_URL;
+
 export class Editartwork extends Component{
   constructor(props){
     super(props);
@@ -19,7 +24,7 @@ export class Editartwork extends Component{
   }
 
   getArtworkToEdit=()=>{
-    axios.get(`http://localhost:3000/gallery/${this.state.artworkID}`)
+    axios.get(`${apiUrl}/gallery/${this.state.artworkID}`)
     .then((res)=>{
       this.setState({
         title:res.data.title,

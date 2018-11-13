@@ -4,6 +4,11 @@ import Background from '../logos/fondo.jpg';
 // eslint-disable-next-line
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
+const apiUrl = process.env.NODE_ENV === 'production' ?
+process.env.REACT_APP_PROD_API_URL
+:
+process.env.REACT_APP_DEV_API_URL;
+
 export class Artworkdetail extends Component{
   constructor(props){
     super(props);
@@ -25,7 +30,7 @@ export class Artworkdetail extends Component{
   }
 
   getArtwork=()=>{
-    axios.get(`http://localhost:3000/gallery/${this.state.artworkID}`)
+    axios.get(`${apiUrl}/gallery/${this.state.artworkID}`)
     .then((res)=>{
       this.setState({artworkData:res.data});
 
@@ -50,7 +55,7 @@ export class Artworkdetail extends Component{
         }
     }
 
-    axios.post(`http://localhost:3000/gallery/upload/${this.state.artworkID}`
+    axios.post(`${apiUrl}/gallery/upload/${this.state.artworkID}`
       ,data,config)
     .then((res)=>{
       this.setState({result:res.data})

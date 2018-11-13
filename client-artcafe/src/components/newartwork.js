@@ -2,7 +2,10 @@ import React,{Component} from 'react'
 import axios from 'axios';
 import Background from '../logos/fondo.jpg';
 
-
+const apiUrl = process.env.NODE_ENV === 'production' ?
+process.env.REACT_APP_PROD_API_URL
+:
+process.env.REACT_APP_DEV_API_URL;
 
 export class Newartwork extends Component{
   constructor(props){
@@ -37,7 +40,7 @@ export class Newartwork extends Component{
   }
 
   postGallery=(state)=>{
-    axios.post('http://localhost:3000/gallery',state)
+    axios.post(`${apiUrl}/gallery`,state)
     .then((res)=>{
       this.setState(this.initialState);
       this.props.history.push('/gallery');

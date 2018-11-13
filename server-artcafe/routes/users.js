@@ -38,7 +38,7 @@ router.get('/:id',(req,res,next)=>{
         }
       )
     });
-}
+  }
 )
 
 /*New route to upload a file image for avatar*/
@@ -61,5 +61,24 @@ router.post('/:id',((req,res,next)=>{
     res.send(req.body);
   })
 )
+
+/*Route to edit user*/
+router.put('/:id', (req, res) => {
+
+//note: only edit description and email
+  const editedUser={
+    description: req.body.description,
+    email: req.body.email,
+  }
+
+  User.findByIdAndUpdate(req.params.id, editedUser,(err,user) => {
+    if (err) {
+      return next(err);
+    } else {
+      return res.send(user);
+    }
+  });
+
+});
 
 module.exports = router;

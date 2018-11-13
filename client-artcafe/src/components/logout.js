@@ -2,11 +2,15 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import Background from '../logos/fondo.jpg';
 
+const apiUrl = process.env.NODE_ENV === 'production' ?
+process.env.REACT_APP_PROD_API_URL
+:
+process.env.REACT_APP_DEV_API_URL;
 
 export class Logout extends Component{
 
   handleLogout = ()=>{
-    axios.get('http://localhost:3000/logout')
+    axios.get(`${apiUrl}/logout`)
      .then((res)=>{
          this.props.getUserNameId('','','');
          this.props.history.push('/');

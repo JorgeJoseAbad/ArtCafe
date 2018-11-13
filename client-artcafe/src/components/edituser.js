@@ -2,6 +2,11 @@ import React,{Component} from 'react'
 import axios from 'axios';
 import Background from '../logos/fondo.jpg';
 
+const apiUrl = process.env.NODE_ENV === 'production' ?
+process.env.REACT_APP_PROD_API_URL
+:
+process.env.REACT_APP_DEV_API_URL;
+
 export class Edituser extends Component{
   constructor(props){
     super(props);
@@ -23,7 +28,7 @@ export class Edituser extends Component{
   }
 
   getUserToEdit=()=>{
-    axios.get(`http://localhost:3000/users/${this.state.userId}`)
+    axios.get(`${apiUrl}/users/${this.state.userId}`)
     .then((res)=>{
       this.setState({userToedit:res.data});
 
@@ -41,11 +46,9 @@ export class Edituser extends Component{
 
     handleChange = event => {
       const target = event.target;
+      const name= target.name;
       const value = target.type === 'checkbox' ? target.checked : target.value;
-        this.setState({
-              [this.userToedit.name] : value
-
-        });
+        this.setState({userToedit:{...this.state.userToedit,[name] : value}});
     }
 
   handleSubmit=(event)=>{
@@ -67,6 +70,21 @@ export class Edituser extends Component{
 
     })
     .catch(e=>console.log(e))
+ }
+
+
+ handleSubmitUserData=(event)=>{
+
+   event.preventDefault();
+   const data=this.state.userToedit;
+   axios.put(
+     `http://localhost:3000/users/${this.state.userId}`
+     ,data
+   )
+   .then((res)=>{
+     console.log(res)
+   })
+   .catch(e=>console.log(e))
  }
 
 render(){
@@ -150,7 +168,7 @@ render(){
         <button
           className="btn btn-primary"
           type="submit"
-          onClick={this.handleSubmit}
+          onClick={this.handleSubmitUserData}
         >
           Make changes
         </button>

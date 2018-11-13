@@ -2,6 +2,11 @@ import React,{Component} from 'react'
 import axios from 'axios'
 import Background from '../logos/fondo.jpg';
 
+const apiUrl = process.env.NODE_ENV === 'production' ?
+process.env.REACT_APP_PROD_API_URL
+:
+process.env.REACT_APP_DEV_API_URL;
+
 export class Signup extends Component{
   constructor(props){
     super(props);
@@ -35,7 +40,7 @@ export class Signup extends Component{
   }
 
   sendSignup=(state)=>{
-    axios.post('http://localhost:3000/signup',state)
+    axios.post(`${apiUrl}/signup`,state)
     .then((res)=>{
       this.setState({
         serverResponse:res.data.message

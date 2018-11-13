@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import Background from '../logos/fondo.jpg';
 
+const apiUrl = process.env.NODE_ENV === 'production' ?
+process.env.REACT_APP_PROD_API_URL
+:
+process.env.REACT_APP_DEV_API_URL;
+
 export class Login extends Component{
   constructor(props){
     super(props);
@@ -17,7 +22,10 @@ export class Login extends Component{
     this.state = this.initialState;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
   }
+
+
 
   handleChange = event => {
       const {name, value} = event.target;
@@ -35,7 +43,7 @@ export class Login extends Component{
 
 
  loginPost=(state)=>{
-    axios.post('http://localhost:3000/login',state)
+    axios.post(`${apiUrl}/login`,state)
     .then((res)=>{
       console.log(res);
       this.setState({
@@ -77,7 +85,7 @@ export class Login extends Component{
           }}>
           {this.state.serverResponse}
         </div>
-
+        {this.apiUrl}
         <div className="container">
           <div className="row">
             <div className="col-sm-offset-3 col-sm-6 centered-form">
