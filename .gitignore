@@ -4,8 +4,7 @@ package-lock.json
 
 
 # files uploaded
-/uploads
-uploads
+
 
 # dependencies
 /node_modules
