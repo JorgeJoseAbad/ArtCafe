@@ -5,7 +5,7 @@ const User = require("../models/user");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '/public/uploads')
+    cb(null, './public/uploads')
   },
   filename: function (req, file, cb) {
     cb(null, file.fieldname + '-' + Date.now()+'.jpg')
@@ -42,7 +42,7 @@ router.get('/:id',(req,res,next)=>{
 )
 
 /*New route to upload a file image for avatar*/
-router.post('/upload/:id',upload.single('avatar'),((req,res,next)=>{
+router.post('/upload/:id',upload.single('avatar'),(req,res,next)=>{
 
   pic_path = "/uploads/" + req.file.filename;
 
@@ -54,7 +54,7 @@ router.post('/upload/:id',upload.single('avatar'),((req,res,next)=>{
     }
     return res.send("Success in the avatar loading");
   });
-}))
+})
 
 /* POST users listing with params. this is a test OK*/
 router.post('/:id',((req,res,next)=>{

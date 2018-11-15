@@ -38,7 +38,7 @@ export class Edituser extends Component{
   }
 
   handleselectedFile = event => {
-      let selectedFile = document.getElementById('input').files[0];
+      let selectedFile = document.getElementById('avatar').files[0];
       this.setState({
         selectedFile: selectedFile,
       })
@@ -101,9 +101,9 @@ render(){
       <div>User Name: {this.state.userToedit.username}</div>
       <form onSubmit={this.handleSubmit} encType="multipart/form-data">
         <label
-          htmlFor="pic_path"
+          htmlFor="avatar"
         >
-          Upload a new photo for this artwork
+          Upload a new avatar image for this user
         </label>
         <input
           style={{
@@ -112,8 +112,8 @@ render(){
           }}
 
           type="file"
-          id="input"
-          name="pic_path"
+          id="avatar"
+          name="avatar"
           ref={this.fileInput}
           onChange={this.handleselectedFile}
         />
