@@ -39,7 +39,7 @@ export class Artworkdetail extends Component{
   }
 
   handleselectedFile = event => {
-      let selectedFile = document.getElementById('pic_path').files[0];
+      let selectedFile = document.getElementById('artworkImage').files[0];
       this.setState({
         selectedFile: selectedFile,
       })
@@ -96,14 +96,14 @@ export class Artworkdetail extends Component{
       options=
       <div>
         <form onSubmit={this.handleSubmit} encType="multipart/form-data">
-          <label htmlFor="pic_path">
+          <label htmlFor="artworkImage">
             Upload a new photo for this artwork
           </label>
           <input
             style={{maxWidth: 500}}
             type="file"
-            name="pic_path"
-            id="pic_path"
+            name="artworkImage"
+            id="artworkImage"
             accept=".jpg, .jpeg, .png"
             ref={this.fileInput}
             onChange={this.handleselectedFile}
