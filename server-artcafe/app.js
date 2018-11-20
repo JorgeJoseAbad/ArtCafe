@@ -11,7 +11,8 @@ const multer  = require('multer')
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require("connect-mongo")(session);
-//const bcrypt = require("bcrypt");   estan en passport.js y authroutes
+const bcrypt = require("bcrypt");   //estan en passport.js y authroutes
+const LocalStrategy = require("passport-local").Strategy;
 const passport      = require('passport');
 require('./configs/passport');
 
@@ -20,6 +21,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const galleryRouter = require('./routes/gallery');
 
+const User = require("./models/user.js");
 
 mongoose
   .connect(process.env.MONGODB_URI, {useNewUrlParser: true})

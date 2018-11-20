@@ -1,4 +1,4 @@
-
+const passport = require("passport");
 const express = require("express");
 const authRoutes = express.Router();
 
@@ -67,43 +67,29 @@ authRoutes.post("/signup", (req, res, next) => {
   });
 });
 
-authRoutes.post("/login", (req, res, next) => {
-  var username = req.body.username;
-  var password = req.body.password;
 
-  if (username === "" || password === "") {
-    res.send({message: "The username or password doesn't exist"})
-    //res.render("auth/login", {
-    //  errorMessage: "Indicate a username and a password to sign up"
-    //});
-    return;
-  }
+/*New login with passport and custom callback*/
+authRoutes.post("/login", function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) { return next(err); }
 
-  User.findOne({ "username": username }, (err, user) => {
-      if (err || !user) {
-        res.send({message: "The username doesn't exist"});
-        //res.render("auth/login", {
-        //  errorMessage: "The username doesn't exist"
-        //});
-        return;
-      }
-      if (bcrypt.compareSync(password, user.password)) {
-        // Save the login in the session!
-        req.session.currentUser = user;
-        res.send({message: "you are logged as: "+req.session.currentUser.username,
-          username:req.session.currentUser.username,
-          _id:req.session.currentUser._id,
-          pic_path:req.session.currentUser.pic_path
-        }) //an eye to this
-        //res.redirect("/");
-      } else {
-        res.send({message: "The password is incorrect"})
-        //res.render("auth/login", {
-        //  errorMessage: "Incorrect password"
-        //});
-      }
-  });
-});
+    if (!user) { return res.send(info); } //user error in info
+
+    if (user&&info) {return res.send(info);} //password error in info
+
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      //session data in req.session
+      return res.send(
+         {  message: "you are logged from autent as: "+req.user.username,
+            username:req.user.username,
+            _id:req.user._id,
+            pic_path:req.user.pic_path
+        });
+    });
+  })(req, res, next);
+ },
+);
 
 
 

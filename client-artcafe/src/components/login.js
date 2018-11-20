@@ -52,8 +52,8 @@ export class Login extends Component{
         userId:res.data._id,
         userPic_path:res.data.pic_path
       })
-      if (res.data.message!=="The password is incorrect"
-            && res.data.message!=="The username doesn't exist"
+      if (res.data.message!=="The username do not exist"
+            && res.data.message!=="The password is incorrect"
           ){
         this.props.getUserNameId(
           this.state.userName,

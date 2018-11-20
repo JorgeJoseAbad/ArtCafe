@@ -25,12 +25,13 @@
      }
 
      if (!foundUser) {
-       next(null, false, { message: 'Incorrect username.' });
+       console.log("message: 'Incorrect username");
+       next(null, false, { message: 'The username do not exist' });
        return;
      }
 
      if (!bcrypt.compareSync(password, foundUser.password)) {
-       next(null, false, { message: 'Incorrect password.' });
+       next(null, false, { message: 'The password is incorrect' });
        return;
      }
 
