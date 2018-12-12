@@ -24,6 +24,10 @@ import {Newartwork} from './components/newartwork.js';
 import {Buy} from './components/buy.js';
 import {Delete} from './components/delete.js';
 
+import {Categorygallery} from './components/content/category.js';
+import {Authorgallery} from './components/content/author.js';
+import {Artworkbycategory} from './components/content/artworkbycategory.js';
+
 
 class App extends Component {
 constructor(props){
@@ -58,7 +62,16 @@ constructor(props){
          {...props} id={this.state.userLoggedId} name={this.state.userLogged}
          />}/>,
       <Route path="/buy" key="r9" component={Buy}/>,
-      <Route path="/delete" key="10" component={Delete}/>
+      <Route path="/delete" key="10" component={Delete}/>,
+      <Route path="/categorygallery" key="11" render={(props)=><Categorygallery
+        title="Table of contents" user={this.state.userLogged}
+        id={this.state.userLoggedId} {...props}
+        />}/>,
+      <Route path="/authorgallery" key="12" render={(props)=><Authorgallery
+        title="Table of contents" user={this.state.userLogged}
+        id={this.state.userLoggedId} {...props}
+        />}/>,
+      <Route path="/artworkbycategory" key="13" component={Artworkbycategory}/>,
     ]
   };
 

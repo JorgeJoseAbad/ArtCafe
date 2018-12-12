@@ -58,7 +58,7 @@ render(){
             padding: 20
           }}>
           <pre>Main options you have</pre>
-          <ul>
+          <ul id="main-options">
             <li>
               <b>List all artorks</b>
 
@@ -67,15 +67,35 @@ render(){
               </button>
 
             </li>
+            <li>
+              <b>Go to table of contents by category</b>
+
+              <button type="button">
+                <Link to="/categorygallery">
+                  artworks by category
+                </Link>
+              </button>
+
+            </li>
+            <li>
+              <b>Go to table of contents by author</b>
+
+              <button type="button">
+                <Link to="/authorgallery">
+                  artworks by author
+                </Link>
+              </button>
+
+            </li>
             {this.props.user!==''?
-              <li>
-                <b>List your artwork</b>
+            <li>
+              <b>List your artwork</b>
 
-                <button type="button">
-                  <Link to={userArtwork}>See your artork</Link>
-                </button>
+              <button type="button">
+                <Link to={userArtwork}>See your artork</Link>
+              </button>
 
-              </li>
+            </li>
             :
             <li>
               <b>Made login</b>
